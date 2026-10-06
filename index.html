@@ -2,7 +2,7 @@
 <html lang="en-AU">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#071a33" />
   <meta name="description" content="Vertical Business Solutions helps Australian trade businesses quote faster, manage jobs, visualise finished work and keep every step connected." />
   <title>Vertical Business Solutions | Quote Faster. Manage Jobs. Grow.</title>
@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="assets/hero/hero.css" />
 </head>
 <body>
   <header class="site-header">
@@ -30,155 +31,71 @@
   </header>
 
   <main id="top">
-    <section class="hero">
-      <div class="hero-glow hero-glow-one"></div>
-      <div class="hero-glow hero-glow-two"></div>
-      <div class="wrap hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Software for Australian trade businesses</p>
-          <h1>Quote faster.<br>Manage jobs.<br><span>Grow your trade business.</span></h1>
-          <p class="hero-text">One connected system for quoting, visualising work, approvals, scheduling and job closeout — designed around the way tradies actually work.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#products">See Trade &amp; Quote Products <span aria-hidden="true">→</span></a>
-            <a class="button ghost" href="#demo">Request Demo</a>
-          </div>
-          <div class="benefit-row" aria-label="Key benefits">
-            <div><span class="benefit-icon">★</span><b>Win more work</b></div>
-            <div><span class="benefit-icon">⚡</span><b>Save time quoting</b></div>
-            <div><span class="benefit-icon">✓</span><b>Keep jobs on track</b></div>
-            <div><span class="benefit-icon">↗</span><b>Grow profitably</b></div>
-          </div>
-        </div>
-
-        <div class="hero-visual reveal" aria-label="Trade quote and job workflow preview">
-          <div class="trade-scene">
-            <div class="scene-sky"></div>
-            <div class="scene-fence"></div>
-            <div class="scene-garden"><i></i><i></i><i></i><i></i><i></i></div>
-            <div class="scene-paving"></div>
-            <div class="worker-card" aria-hidden="true">
-              <div class="worker-head"></div><div class="worker-body"></div><div class="worker-arm"></div>
-              <span>V</span>
-            </div>
-          </div>
-
-          <div class="laptop">
-            <div class="laptop-screen">
-              <aside>
-                <div class="mini-brand">V</div>
-                <span>Dashboard</span><span class="active">Quotes</span><span>Jobs</span><span>Customers</span><span>Schedule</span><span>Price Book</span><span>Reports</span>
-              </aside>
-              <div class="quote-ui">
-                <div class="quote-top"><div><small>TRADE QUOTE</small><strong>Smith Residence</strong><span>Brighton, VIC</span></div><b>•••</b></div>
-                <div class="quote-content">
-                  <div class="quote-lines">
-                    <div><span>1. Site preparation</span><b>$2,850</b></div>
-                    <div><span>2. Paving</span><b>$7,200</b></div>
-                    <div><span>3. Retaining / edging</span><b>$4,300</b></div>
-                    <div class="quote-total"><span>Total</span><b>$14,350</b></div>
-                    <button type="button" tabindex="-1">Send Quote</button>
-                  </div>
-                  <div class="hero-before-after">
-                    <div class="before-side"><span>Before</span></div>
-                    <div class="after-side"><span>After</span></div>
-                    <div class="hero-reveal-line"><b>↔</b></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="laptop-base"></div>
-          </div>
-
-          <div class="phone">
-            <div class="phone-notch"></div>
-            <small>JOB PROGRESS</small>
-            <strong>Smith Residence</strong>
-            <ul>
-              <li class="done">Quote sent</li>
-              <li class="done">Client approved</li>
-              <li class="done">Job scheduled</li>
-              <li class="done">In progress</li>
-              <li class="done">Completed</li>
-            </ul>
-            <div class="phone-complete">Job Completed ✓</div>
-          </div>
-
-          <div class="hero-note">Turn site photos into<br>professional quotes<br>in minutes. <span>↙</span></div>
-        </div>
+    <section class="vbs-hero vbs-scroll-track vbs-static" id="workflow" aria-labelledby="hero-title">
+ <div class="vbs-sticky-hero">
+  <div class="vbs-hero-layout">
+   <div class="vbs-hero-copy">
+    <p class="vbs-eyebrow"><span></span> BUILT AROUND THE WAY TRADIES WORK</p>
+    <h1 id="vbs-hero-title">FROM ENQUIRY<br> TO <em>COMPLETED</em><br> JOB.</h1>
+    <p class="vbs-intro">Watch customer information, site photos, pricing and approvals move through one connected trade workflow.</p>
+    <div class="vbs-hero-actions"><button type="button" id="vbs-watch" class="vbs-primary" disabled>Watch the workflow <span>↗</span></button><a id="vbs-hero-demo" class="vbs-secondary" href="#demo">Book a demo</a></div>
+    <div class="vbs-copy-footer"><span class="vbs-small-line"></span><span>One job. Every step. Connected.</span></div>
+   </div>
+   <div class="vbs-visual-column">
+    <div class="vbs-scene" id="vbs-scene" aria-label="Animated trade workflow in one persistent residential driveway scene">
+     <picture class="vbs-background"><source media="(max-width: 700px)" srcset="assets/hero/driveway-mobile.webp"><img src="assets/hero/driveway.webp" alt="Modern Australian house, driveway, landscaping and a VBS trade van in warm sunlight" fetchpriority="high" width="1536" height="864" decoding="async"></picture>
+     <div class="vbs-scene-shade"></div>
+     <svg class="vbs-finished-driveway" viewBox="0 0 1536 864" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="vbs-finished-pavers" width="48" height="25" patternUnits="userSpaceOnUse" patternTransform="skewX(-16)"><rect width="48" height="25" fill="#aaafa9"/><path d="M0 0H48V25H0Z M24 0V12.5M0 12.5H48M12 12.5V25M36 12.5V25" fill="none" stroke="#707a78" stroke-width="1.6"/></pattern></defs><path id="vbs-driveway-finish" fill="url(#vbs-finished-pavers)" d="M592 299L960 299L1780 864L-220 864Z"/><path id="vbs-finish-edge" fill="none" stroke="#c5c9c1" stroke-width="8" d="M592 299L-220 864M960 299L1780 864"/></svg>
+     <div class="vbs-location-label">MORNINGTON, VIC <span>•</span> DRIVEWAY REPLACEMENT</div>
+     <div class="vbs-scene-heading"><span id="vbs-stage-number">01 / 06</span><strong id="vbs-stage-title">An enquiry becomes a job brief.</strong></div>
+     <div class="vbs-world" id="vbs-world" aria-hidden="true">
+      <div class="vbs-flow-guide vbs-guide-in"><span>INPUT</span><i></i></div><div class="vbs-flow-guide vbs-guide-out"><i></i><span>OUTPUT</span></div>
+      <div class="vbs-beam vbs-beam-in"></div><div class="vbs-beam vbs-beam-out"></div>
+      <div class="vbs-ground-shadow"></div>
+      <div class="vbs-phone vbs-object" id="vbs-phone">
+       <div class="vbs-phone-side"></div><div class="vbs-phone-shell"><div class="vbs-phone-gloss"></div><div class="vbs-phone-screen">
+        <div class="vbs-phone-island"></div><div class="vbs-screen-brand"><span>VBS</span><i>WORKFLOW ENGINE</i></div>
+        <div class="vbs-screen-pane" id="vbs-screen-enquiry"><small>ENQUIRY INTAKE</small><h3>Job brief</h3><div class="vbs-data-row">Sarah Thompson</div><div class="vbs-data-row">Mornington VIC</div><div class="vbs-data-row">Driveway replacement</div><div class="vbs-data-row"><b>42 m²</b><span>3 photos</span></div><div class="vbs-screen-status">Ready for quote →</div></div>
+        <div class="vbs-screen-pane" id="vbs-screen-photos"><small>SITE ASSESSMENT</small><h3>Read the site.</h3><div class="vbs-screen-photo"><div class="vbs-photo-grid"></div><div class="vbs-screen-scan"></div><span class="vbs-measure">42 m²</span></div><div class="vbs-data-row">Surface identified</div><div class="vbs-data-row">Edges mapped ✓</div></div>
+        <div class="vbs-screen-pane" id="vbs-screen-makeover"><small>MAKEOVER VISUALISER</small><h3>See the finish.</h3><div class="vbs-mini-tile-grid"></div><div class="vbs-screen-status">Customer visual ready</div></div>
+        <div class="vbs-screen-pane" id="vbs-screen-quote"><small>PRICE BOOK → QUOTE</small><h3>Every part priced.</h3><div class="vbs-quote-line">Pavers <b>$6,120</b></div><div class="vbs-quote-line">Bedding sand <b>$680</b></div><div class="vbs-quote-line">Roadbase <b>$1,950</b></div><div class="vbs-quote-line">Edging <b>$1,200</b></div><div class="vbs-quote-line">Labour <b>$3,200</b></div><div class="vbs-quote-line">Equipment <b>$1,200</b></div><div class="vbs-screen-total">$14,350</div><small class="vbs-demo-values">DEMO VALUES ONLY</small></div>
+        <div class="vbs-screen-pane" id="vbs-screen-approval"><small>APPROVAL WORKFLOW</small><h3>Customer review</h3><div class="vbs-approval-total">$14,350</div><div class="vbs-approve-button">APPROVE QUOTE <span>✓</span></div><div class="vbs-tap-ring"></div><div class="vbs-approved-stamp">APPROVED ✓</div><div class="vbs-job-created">JOB CREATED</div></div>
+        <div class="vbs-screen-pane" id="vbs-screen-complete"><small>FINANCE CLOSEOUT</small><div class="vbs-complete-check">✓</div><h3>Job complete.</h3><div class="vbs-data-row">Customer approved ✓</div><div class="vbs-data-row">Invoice ready ✓</div><div class="vbs-screen-status">Ready for the next job</div></div>
+        <div class="vbs-portal-scan"></div>
+       </div></div><div class="vbs-phone-portal"></div>
       </div>
-    </section>
-
-    <section id="workflow" class="workflow-section section">
-      <div class="wrap">
-        <div class="workflow-heading reveal">
-          <div>
-            <p class="eyebrow blue">VBS Trade &amp; Quote Products</p>
-            <h2>Watch a quote become a completed job.</h2>
-            <p>A visual workflow shows the full journey — from a new enquiry and old site photos to a finished visual, approved quote, scheduled job and closeout.</p>
-          </div>
-          <div class="workflow-actions">
-            <button id="play-workflow" class="button play-button" type="button"><span class="play-icon">▶</span> Play workflow</button>
-            <span>Plays once as you scroll. Replay any time.</span>
-          </div>
-        </div>
-
-        <div class="workflow-shell reveal" data-workflow>
-          <div class="workflow-progress" aria-hidden="true"><span></span></div>
-          <div class="workflow-track">
-            <button type="button" class="workflow-step active" data-step="0" aria-label="Step 1: Enquiry arrives">
-              <div class="step-art enquiry-art">
-                <div class="mail-back"></div>
-                <div class="mail-card"><i>1</i><small>NEW ENQUIRY</small><b>Driveway quote request</b><span>Website lead · 2 min ago</span></div>
-              </div>
-              <span class="step-number">1</span><strong>Enquiry Arrives</strong><p>A new quote request lands in one organised workspace.</p>
-            </button>
-
-            <button type="button" class="workflow-step" data-step="1" aria-label="Step 2: Upload photos">
-              <div class="step-art upload-art">
-                <div class="photo-card photo-one"><div></div></div><div class="photo-card photo-two"><div></div></div>
-                <div class="upload-phone"><div class="mini-scene"></div></div><div class="upload-cloud">↑</div>
-              </div>
-              <span class="step-number">2</span><strong>Upload Photos</strong><p>Add current site photos from a phone or computer.</p>
-            </button>
-
-            <button type="button" class="workflow-step" data-step="2" aria-label="Step 3: Create visuals">
-              <div class="step-art visual-art">
-                <div class="visual-before"><span>Before</span></div><div class="visual-after"><span>After</span></div><div class="visual-swipe"><b>↔</b></div>
-              </div>
-              <span class="step-number">3</span><strong>Create Visuals</strong><p>Show the customer a finished-look concept from their own photo.</p>
-            </button>
-
-            <button type="button" class="workflow-step" data-step="3" aria-label="Step 4: Build quote">
-              <div class="step-art quote-art">
-                <div class="material-chip chip-one">Pavers <b>$65/m²</b></div><div class="material-chip chip-two">Labour <b>$3,200</b></div>
-                <div class="quote-sheet"><small>TRADE QUOTE</small><strong>$14,350</strong><span>Materials + labour</span><em>Send Quote</em></div>
-              </div>
-              <span class="step-number">4</span><strong>Build Quote</strong><p>Pricing, materials and labour assemble into a professional quote.</p>
-            </button>
-
-            <button type="button" class="workflow-step" data-step="4" aria-label="Step 5: Approve and schedule">
-              <div class="step-art approval-art">
-                <div class="approved-card"><small>QUOTE APPROVED</small><b>✓</b><span>Job created</span></div>
-                <div class="calendar-card"><b>APR</b><div><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Paving</span></div>
-              </div>
-              <span class="step-number">5</span><strong>Approve &amp; Schedule</strong><p>The accepted quote becomes a job and moves onto the schedule.</p>
-            </button>
-
-            <button type="button" class="workflow-step" data-step="5" aria-label="Step 6: Job completed">
-              <div class="step-art complete-art">
-                <div class="finished-scene"><div class="finished-garden"></div><div class="finished-paving"></div></div><div class="complete-check">✓</div>
-              </div>
-              <span class="step-number">6</span><strong>Job Completed</strong><p>Track progress, finish the job and move it into closeout.</p>
-            </button>
-          </div>
-          <div class="workflow-mobile-controls">
-            <button type="button" class="previous-step" aria-label="Previous workflow step">←</button>
-            <div class="workflow-dots" aria-label="Workflow navigation"></div>
-            <button type="button" class="next-step" aria-label="Next workflow step">→</button>
-          </div>
-        </div>
+      <article class="vbs-float-card vbs-object vbs-raw" id="vbs-enquiry"><div class="vbs-card-icon">✉</div><small>NEW ENQUIRY</small><h3>Sarah Thompson</h3><p>Mornington, VIC</p><div class="vbs-raw-message">“We’d like to replace<br>our old driveway…”</div><div class="vbs-loose-chips"><span>42 m² driveway</span><span>3 site photos ↗</span></div></article>
+      <div class="vbs-chip vbs-object vbs-loose" id="vbs-chip-name">Sarah Thompson</div><div class="vbs-chip vbs-object vbs-loose" id="vbs-chip-area">42 m²</div><div class="vbs-chip vbs-object vbs-loose" id="vbs-chip-location">Mornington VIC</div>
+      <article class="vbs-float-card vbs-object" id="vbs-brief"><small>STRUCTURED JOB BRIEF</small><h3>Driveway replacement</h3><dl><dt>CUSTOMER</dt><dd>Sarah Thompson</dd><dt>AREA / LOCATION</dt><dd>42 m² · Mornington VIC</dd></dl><div class="vbs-card-status">Ready for quote →</div></article>
+      <div class="vbs-site-photo vbs-object" id="vbs-photo1"><div class="vbs-photo-surface"></div><span>01 / EXISTING DRIVEWAY</span></div><div class="vbs-site-photo vbs-object" id="vbs-photo2"><div class="vbs-photo-surface vbs-crop2"></div><span>02 / ACCESS & EDGES</span></div><div class="vbs-site-photo vbs-object" id="vbs-photo3"><div class="vbs-photo-surface vbs-crop3"></div><span>03 / SITE DETAIL</span></div>
+      <article class="vbs-float-card vbs-object vbs-compact" id="vbs-assessment"><small>SITE ASSESSMENT</small><h3>42 m² mapped.</h3><p>Surface · edges · access</p><div class="vbs-card-status">Ready to visualise →</div></article>
+      <div class="vbs-site-model vbs-object" id="vbs-model">
+       <div class="vbs-model-caption"><span>EXISTING SURFACE</span><b id="vbs-model-label">→ PROPOSED FINISH</b></div>
+       <div class="vbs-model-stack"><div class="vbs-material-plane vbs-base-plane" id="vbs-base-plane"></div><div class="vbs-material-plane vbs-sand-plane" id="vbs-sand-plane"></div><div class="vbs-material-plane vbs-old-plane" id="vbs-old-plane"><div class="vbs-old-grid"></div></div><div class="vbs-material-plane vbs-paver-plane" id="vbs-paver-plane"></div><div class="vbs-material-plane vbs-edging-plane" id="vbs-edging-plane"></div><div class="vbs-scan-plane" id="vbs-scan-plane"></div><div class="vbs-fragments" id="vbs-fragments"></div></div>
+       <div class="vbs-compare-label"><span>BEFORE</span><i></i><span>PROPOSED</span></div>
       </div>
-    </section>
+      <article class="vbs-float-card vbs-object vbs-compact" id="vbs-concept"><small>VISUAL CONCEPT</small><h3>Before → proposed.</h3><div class="vbs-concept-swatch"></div><div class="vbs-card-status">Customer visual ready →</div></article>
+      <div class="vbs-material-tag vbs-object" id="vbs-tag-pavers"><span>01</span><div>PAVERS<small>60 m²</small></div><b>$6,120</b></div><div class="vbs-material-tag vbs-object" id="vbs-tag-sand"><span>02</span><div>BEDDING SAND<small>4.5 m³</small></div><b>$680</b></div><div class="vbs-material-tag vbs-object" id="vbs-tag-base"><span>03</span><div>ROADBASE<small>6 m³</small></div><b>$1,950</b></div><div class="vbs-material-tag vbs-object" id="vbs-tag-edging"><span>04</span><div>EDGING<small>45 m</small></div><b>$1,200</b></div><div class="vbs-material-tag vbs-object" id="vbs-tag-labour"><span>05</span><div>LABOUR<small>32 hrs</small></div><b>$3,200</b></div><div class="vbs-material-tag vbs-object" id="vbs-tag-equipment"><span>06</span><div>EQUIPMENT<small>2 days</small></div><b>$1,200</b></div>
+      <div class="vbs-worker-icon vbs-object" id="vbs-worker-icon"><svg viewBox="0 0 90 110"><path d="M29 29Q27 7 45 7T61 29" fill="#f0ad51"/><circle cx="45" cy="37" r="14" fill="#d1b39c"/><path d="M18 86V62L35 53H55L72 62V86Z" fill="#fbac39"/><path d="M30 56V86M59 56V86" stroke="#f0f8ee" stroke-width="7"/><path d="M32 87V109M58 87V109" stroke="#233f52" stroke-width="13"/></svg></div>
+      <div class="vbs-equipment-icon vbs-object" id="vbs-equipment-icon"><svg viewBox="0 0 100 90"><path d="M21 17L48 5 63 36" fill="none" stroke="#c8d5d7" stroke-width="7"/><path d="M22 37H74L85 66H15Z" fill="#e8a252"/><path d="M10 71H88L94 82H8Z" fill="#718594"/><rect x="37" y="25" width="25" height="22" rx="4" fill="#1d3b50"/></svg></div>
+      <article class="vbs-float-card vbs-object vbs-quote-card" id="vbs-quote"><div class="vbs-quote-brand">VBS <span>QUICKQUOTE</span></div><small>TRADE QUOTE / DEMONSTRATION</small><h3>Driveway replacement</h3><p>Prepared for Sarah Thompson</p><div class="vbs-quote-amount">$14,350<small>AUD · DEMO TOTAL</small></div><div class="vbs-quote-cta">VIEW / APPROVE QUOTE ↗</div></article>
+      <article class="vbs-float-card vbs-object vbs-job-card" id="vbs-job"><small>JOB CREATED ✓</small><h3>Driveway installation</h3><p>Sarah Thompson · Crew A</p><div class="vbs-card-status">Ready to schedule →</div></article>
+      <div class="vbs-calendar vbs-object" id="vbs-calendar"><small>SCHEDULING</small><header><b>TUESDAY</b><span>CREW A</span></header><div class="vbs-calendar-lines"><span>07:00</span><i></i><span>08:00</span><i></i><span>09:00</span><i></i></div><div class="vbs-calendar-slot"><b>Driveway installation</b><span>Sarah Thompson · Crew A</span><strong>SCHEDULED ✓</strong></div></div>
+      <div class="vbs-job-progress vbs-object" id="vbs-job-progress"><small>ON SITE → COMPLETE</small><div class="vbs-progress-line"><i></i></div><div class="vbs-progress-steps"><span>Site prep</span><span>Base</span><span>Paving</span><span>Finishing</span><span>Complete</span></div></div>
+      <div class="vbs-outcome vbs-object" id="vbs-outcome-invoice"><span>✓</span><div>Invoice ready<small>FINANCE CLOSEOUT</small></div></div><div class="vbs-outcome vbs-object" id="vbs-outcome-customer"><span>✓</span><div>Customer approved<small>JOB CLOSED</small></div></div><div class="vbs-outcome vbs-object" id="vbs-outcome-revenue"><span>↗</span><div>Revenue / margin<small>READY FOR NEXT JOB</small></div></div>
+      <div class="vbs-particles" id="vbs-particles"></div>
+     </div>
+     <div class="vbs-finish-message"><small>FROM ENQUIRY TO COMPLETED JOB.</small><strong>ONE CONNECTED WORKFLOW.</strong><a id="vbs-products-cta" href="#products">See the trade products ↗</a></div>
+     <div class="vbs-scene-note">ILLUSTRATIVE WORKFLOW · DEMO PRICING</div>
+     <div class="vbs-reduced-summary"><b>One connected workflow.</b><p>Enquiry → Visual → Quote → Approved Job → Complete</p></div>
+    </div>
+    <div class="vbs-controls"><div class="vbs-transport"><button type="button" id="vbs-play" aria-label="Play workflow" disabled>▶ <span>Play</span></button><button type="button" id="vbs-pause" aria-label="Pause workflow" disabled>Ⅱ <span>Pause</span></button><button type="button" id="vbs-replay" aria-label="Replay workflow" disabled>↺ <span>Replay</span></button></div><label class="vbs-scrubber-label"><span class="vbs-sr-only">Workflow progress in seconds</span><input id="vbs-scrubber" type="range" min="0" max="17" step="0.01" value="0" aria-label="Workflow progress in seconds" disabled></label><output id="vbs-time">00:00 / 00:17</output></div>
+    <ol class="vbs-stage-nav" aria-label="Jump to a workflow stage"><li><button type="button" data-time="0" disabled>01 <span>Enquiry</span></button></li><li><button type="button" data-time="2.5" disabled>02 <span>Photos</span></button></li><li><button type="button" data-time="5" disabled>03 <span>Makeover</span></button></li><li><button type="button" data-time="8" disabled>04 <span>Quote</span></button></li><li><button type="button" data-time="11" disabled>05 <span>Approve</span></button></li><li><button type="button" data-time="13.5" disabled>06 <span>Complete</span></button></li></ol>
+   </div>
+  </div><div class="vbs-scroll-hint">SCROLL TO CONTROL THE WORKFLOW <span>↓</span></div>
+ </div>
+<div class="vbs-sr-only" id="vbs-stage-announcement" role="status" aria-live="polite"></div>
+</section>
 
     <section id="products" class="section products-section">
       <div class="wrap">
@@ -301,7 +218,10 @@
     <div class="wrap footer-bottom"><span>© <span id="year"></span> Vertical Business Solutions</span><span>Proudly Australian</span></div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
+  <script src="assets/hero/gsap.min.js" defer></script>
+  <script src="assets/hero/ScrollTrigger.min.js" defer></script>
+  <script src="assets/hero/hero.js" defer></script>
   <!-- Netlify Forms enabled for demo-request -->
 </body>
 </html>

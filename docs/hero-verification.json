@@ -1,0 +1,344 @@
+{
+  "checkpoint": "VBS-HERO-02-20261006",
+  "browser": "Headless Chromium 153 / Linux software rendering",
+  "tests": [
+    {
+      "name": "Existing products content preserved",
+      "passed": true
+    },
+    {
+      "name": "Existing platform content preserved",
+      "passed": true
+    },
+    {
+      "name": "Existing demo content preserved",
+      "passed": true
+    },
+    {
+      "name": "Existing header preserved",
+      "passed": true
+    },
+    {
+      "name": "Old carousel removed",
+      "passed": true
+    },
+    {
+      "name": "desktop timeline initialises",
+      "passed": true
+    },
+    {
+      "name": "desktop stage 1",
+      "passed": true,
+      "detail": {
+        "time": 1.95,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "desktop stage 2",
+      "passed": true,
+      "detail": {
+        "time": 4.6,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "desktop stage 3",
+      "passed": true,
+      "detail": {
+        "time": 6.65,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "desktop stage 4",
+      "passed": true,
+      "detail": {
+        "time": 8.95,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "desktop stage 5",
+      "passed": true,
+      "detail": {
+        "time": 13.26,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "desktop stage 6",
+      "passed": true,
+      "detail": {
+        "time": 16.72,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "desktop same background through six stages",
+      "passed": true
+    },
+    {
+      "name": "desktop exploded pricing labels visible",
+      "passed": true
+    },
+    {
+      "name": "desktop keyboard play",
+      "passed": true
+    },
+    {
+      "name": "desktop pause holds timeline",
+      "passed": true
+    },
+    {
+      "name": "desktop replay starts from beginning",
+      "passed": true
+    },
+    {
+      "name": "desktop range can inspect any moment",
+      "passed": true
+    },
+    {
+      "name": "desktop stage shortcut",
+      "passed": true
+    },
+    {
+      "name": "desktop transport targets at least 44px",
+      "passed": true
+    },
+    {
+      "name": "desktop scroll stops autoplay and drives timeline",
+      "passed": true
+    },
+    {
+      "name": "desktop sticky stage below existing header",
+      "passed": true
+    },
+    {
+      "name": "desktop final CTA reaches products",
+      "passed": true
+    },
+    {
+      "name": "desktop hero CTA reaches real demo form",
+      "passed": true
+    },
+    {
+      "name": "desktop form retains Netlify POST and honeypot",
+      "passed": true
+    },
+    {
+      "name": "desktop existing submitted message",
+      "passed": true
+    },
+    {
+      "name": "mobile timeline initialises",
+      "passed": true
+    },
+    {
+      "name": "mobile stage 1",
+      "passed": true,
+      "detail": {
+        "time": 1.95,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway-mobile.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "mobile stage 2",
+      "passed": true,
+      "detail": {
+        "time": 4.6,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway-mobile.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "mobile stage 3",
+      "passed": true,
+      "detail": {
+        "time": 6.65,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway-mobile.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "mobile stage 4",
+      "passed": true,
+      "detail": {
+        "time": 8.95,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway-mobile.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "mobile stage 5",
+      "passed": true,
+      "detail": {
+        "time": 13.26,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway-mobile.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "mobile stage 6",
+      "passed": true,
+      "detail": {
+        "time": 16.72,
+        "phone": true,
+        "bg": "file:///workspace/scratch/95c513a24edb/marketing-website/assets/hero/driveway-mobile.webp",
+        "overflow": false
+      }
+    },
+    {
+      "name": "mobile same background through six stages",
+      "passed": true
+    },
+    {
+      "name": "mobile exploded pricing labels visible",
+      "passed": true
+    },
+    {
+      "name": "mobile keyboard play",
+      "passed": true
+    },
+    {
+      "name": "mobile pause holds timeline",
+      "passed": true
+    },
+    {
+      "name": "mobile replay starts from beginning",
+      "passed": true
+    },
+    {
+      "name": "mobile range can inspect any moment",
+      "passed": true
+    },
+    {
+      "name": "mobile stage shortcut",
+      "passed": true
+    },
+    {
+      "name": "mobile transport targets at least 44px",
+      "passed": true
+    },
+    {
+      "name": "mobile scroll stops autoplay and drives timeline",
+      "passed": true
+    },
+    {
+      "name": "mobile sticky stage below existing header",
+      "passed": true
+    },
+    {
+      "name": "mobile final CTA reaches products",
+      "passed": true
+    },
+    {
+      "name": "mobile hero CTA reaches real demo form",
+      "passed": true
+    },
+    {
+      "name": "mobile form retains Netlify POST and honeypot",
+      "passed": true
+    },
+    {
+      "name": "mobile menu remains functional",
+      "passed": true
+    },
+    {
+      "name": "mobile navigation closes on selection",
+      "passed": true
+    },
+    {
+      "name": "mobile existing submitted message",
+      "passed": true
+    },
+    {
+      "name": "Responsive 375×667 no overflow",
+      "passed": true
+    },
+    {
+      "name": "Responsive 375×667 playback within viewport",
+      "passed": true
+    },
+    {
+      "name": "Responsive 390×844 no overflow",
+      "passed": true
+    },
+    {
+      "name": "Responsive 390×844 playback within viewport",
+      "passed": true
+    },
+    {
+      "name": "Responsive 768×1024 no overflow",
+      "passed": true
+    },
+    {
+      "name": "Responsive 820×1180 no overflow",
+      "passed": true
+    },
+    {
+      "name": "Responsive 1920×1080 no overflow",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion 414 static workflow",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion 1440 static workflow",
+      "passed": true
+    },
+    {
+      "name": "No JavaScript static complete phone and semantic workflow",
+      "passed": true
+    },
+    {
+      "name": "Animation dependency failure remains static and navigable",
+      "passed": true
+    },
+    {
+      "name": "Visible hero automatically plays",
+      "passed": true
+    },
+    {
+      "name": "Complete autoplay run reaches closeout",
+      "passed": true
+    },
+    {
+      "name": "No JavaScript errors or missing GSAP targets",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    }
+  ],
+  "metrics": {
+    "frames": 887,
+    "longFrames": 61,
+    "maxFrameMs": 133.3000000000011,
+    "meanFrameMs": 19.390417136414882
+  },
+  "limitations": [
+    "Physical iPhone Safari and real-device 60fps not verified.",
+    "Demo form contract preserved; no real form request was sent."
+  ],
+  "errors": []
+}

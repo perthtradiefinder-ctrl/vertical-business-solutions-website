@@ -3,169 +3,302 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Vertical Business Solutions builds practical business systems that turn enquiries into organised work, approvals, jobs and finance workflows." />
-  <title>Vertical Business Solutions | Practical Business Systems</title>
+  <meta name="theme-color" content="#071a33" />
+  <meta name="description" content="Vertical Business Solutions helps Australian trade businesses quote faster, manage jobs, visualise finished work and keep every step connected." />
+  <title>Vertical Business Solutions | Quote Faster. Manage Jobs. Grow.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="wrap nav-wrap">
       <a class="brand" href="#top" aria-label="Vertical Business Solutions home">
-        <span class="brand-mark" aria-hidden="true">V</span>
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
         <span class="brand-copy"><strong>Vertical</strong><small>Business Solutions</small></span>
       </a>
-      <button class="menu-button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-        <a href="#how">How it works</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#industries">Industries</a>
-        <a href="#principles">Why VBS</a>
-        <a class="nav-cta" href="#demo">Request a demo</a>
+        <a href="#products">Trade products</a>
+        <a href="#workflow">How it works</a>
+        <a href="#platform">VBS platform</a>
+        <a href="#demo">Demo</a>
+        <a class="nav-cta" href="#demo">Book a demo</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
+      <div class="hero-glow hero-glow-one"></div>
+      <div class="hero-glow hero-glow-two"></div>
       <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Practical systems for busy businesses</p>
-          <h1>Less admin.<br><span>More control.</span></h1>
-          <p class="hero-text">Vertical Business Solutions brings enquiries, approvals, quotes, jobs and finance follow-up into one clear workflow built around the way your business actually works.</p>
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Software for Australian trade businesses</p>
+          <h1>Quote faster.<br>Manage jobs.<br><span>Grow your trade business.</span></h1>
+          <p class="hero-text">One connected system for quoting, visualising work, approvals, scheduling and job closeout — designed around the way tradies actually work.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#demo">See a working demo</a>
-            <a class="button secondary" href="#how">See how it works</a>
+            <a class="button primary" href="#products">See Trade &amp; Quote Products <span aria-hidden="true">→</span></a>
+            <a class="button ghost" href="#demo">Request Demo</a>
           </div>
-          <div class="trust-row">
-            <span>Human-approved actions</span>
-            <span>Industry-specific workflows</span>
-            <span>Built for clarity</span>
+          <div class="benefit-row" aria-label="Key benefits">
+            <div><span class="benefit-icon">★</span><b>Win more work</b></div>
+            <div><span class="benefit-icon">⚡</span><b>Save time quoting</b></div>
+            <div><span class="benefit-icon">✓</span><b>Keep jobs on track</b></div>
+            <div><span class="benefit-icon">↗</span><b>Grow profitably</b></div>
           </div>
         </div>
 
-        <div class="dashboard-shell" aria-label="Example owner dashboard">
-          <div class="dash-top">
-            <div>
-              <span class="dash-label">OWNER OVERVIEW</span>
-              <strong>Thursday, 24 September</strong>
+        <div class="hero-visual reveal" aria-label="Trade quote and job workflow preview">
+          <div class="trade-scene">
+            <div class="scene-sky"></div>
+            <div class="scene-fence"></div>
+            <div class="scene-garden"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="scene-paving"></div>
+            <div class="worker-card" aria-hidden="true">
+              <div class="worker-head"></div><div class="worker-body"></div><div class="worker-arm"></div>
+              <span>V</span>
             </div>
-            <span class="status-pill">Demo</span>
           </div>
-          <div class="attention-card">
-            <div>
-              <small>NEEDS ATTENTION</small>
-              <strong>8</strong>
+
+          <div class="laptop">
+            <div class="laptop-screen">
+              <aside>
+                <div class="mini-brand">V</div>
+                <span>Dashboard</span><span class="active">Quotes</span><span>Jobs</span><span>Customers</span><span>Schedule</span><span>Price Book</span><span>Reports</span>
+              </aside>
+              <div class="quote-ui">
+                <div class="quote-top"><div><small>TRADE QUOTE</small><strong>Smith Residence</strong><span>Brighton, VIC</span></div><b>•••</b></div>
+                <div class="quote-content">
+                  <div class="quote-lines">
+                    <div><span>1. Site preparation</span><b>$2,850</b></div>
+                    <div><span>2. Paving</span><b>$7,200</b></div>
+                    <div><span>3. Retaining / edging</span><b>$4,300</b></div>
+                    <div class="quote-total"><span>Total</span><b>$14,350</b></div>
+                    <button type="button" tabindex="-1">Send Quote</button>
+                  </div>
+                  <div class="hero-before-after">
+                    <div class="before-side"><span>Before</span></div>
+                    <div class="after-side"><span>After</span></div>
+                    <div class="hero-reveal-line"><b>↔</b></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p>Work that needs a decision, approval or follow-up.</p>
+            <div class="laptop-base"></div>
           </div>
-          <div class="mini-grid">
-            <article><span>Waiting approval</span><b>3</b></article>
-            <article><span>Jobs in progress</span><b>2</b></article>
-            <article><span>Ready to invoice</span><b>1</b></article>
-            <article><span>Overdue</span><b>2</b></article>
-            <article class="wide"><span>Waiting customer</span><b>2</b></article>
+
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <small>JOB PROGRESS</small>
+            <strong>Smith Residence</strong>
+            <ul>
+              <li class="done">Quote sent</li>
+              <li class="done">Client approved</li>
+              <li class="done">Job scheduled</li>
+              <li class="done">In progress</li>
+              <li class="done">Completed</li>
+            </ul>
+            <div class="phone-complete">Job Completed ✓</div>
           </div>
-          <div class="up-next">
-            <div class="section-line"><strong>Up next</strong><span>View all</span></div>
-            <div class="task"><i></i><div><b>Review enquiry reply</b><small>Missing access details and site photos</small></div><span>Review</span></div>
-            <div class="task"><i></i><div><b>Approve quote draft</b><small>Customer and scope already linked</small></div><span>Approve</span></div>
-          </div>
+
+          <div class="hero-note">Turn site photos into<br>professional quotes<br>in minutes. <span>↙</span></div>
         </div>
       </div>
     </section>
 
-    <section class="strip" aria-label="Workflow summary">
-      <div class="wrap workflow-strip">
-        <span>Enquiry</span><i>→</i><span>Triage</span><i>→</i><span>Quote / Visit</span><i>→</i><span>Job</span><i>→</i><span>Finance</span><i>→</i><span>Owner View</span>
-      </div>
-    </section>
-
-    <section id="how" class="section">
+    <section id="workflow" class="workflow-section section">
       <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">One connected workflow</p>
-          <h2>Stop retyping the same job five times.</h2>
-          <p>VBS carries the important customer and job information forward so the next step starts with context instead of another blank form.</p>
+        <div class="workflow-heading reveal">
+          <div>
+            <p class="eyebrow blue">VBS Trade &amp; Quote Products</p>
+            <h2>Watch a quote become a completed job.</h2>
+            <p>A visual workflow shows the full journey — from a new enquiry and old site photos to a finished visual, approved quote, scheduled job and closeout.</p>
+          </div>
+          <div class="workflow-actions">
+            <button id="play-workflow" class="button play-button" type="button"><span class="play-icon">▶</span> Play workflow</button>
+            <span>Plays once as you scroll. Replay any time.</span>
+          </div>
         </div>
-        <div class="steps-grid">
-          <article class="step-card"><span>01</span><h3>Capture</h3><p>Turn a raw enquiry into a clean record with customer details, scope, timing and missing information clearly identified.</p></article>
-          <article class="step-card"><span>02</span><h3>Decide</h3><p>See a recommended next step, the reason behind it and alternatives. The owner keeps final control.</p></article>
-          <article class="step-card"><span>03</span><h3>Progress</h3><p>Move approved work through quote, scheduling and job status without duplicating the customer or scope.</p></article>
-          <article class="step-card"><span>04</span><h3>Close out</h3><p>Completed work is surfaced for invoicing, overdue items are visible, and important actions remain reviewable.</p></article>
+
+        <div class="workflow-shell reveal" data-workflow>
+          <div class="workflow-progress" aria-hidden="true"><span></span></div>
+          <div class="workflow-track">
+            <button type="button" class="workflow-step active" data-step="0" aria-label="Step 1: Enquiry arrives">
+              <div class="step-art enquiry-art">
+                <div class="mail-back"></div>
+                <div class="mail-card"><i>1</i><small>NEW ENQUIRY</small><b>Driveway quote request</b><span>Website lead · 2 min ago</span></div>
+              </div>
+              <span class="step-number">1</span><strong>Enquiry Arrives</strong><p>A new quote request lands in one organised workspace.</p>
+            </button>
+
+            <button type="button" class="workflow-step" data-step="1" aria-label="Step 2: Upload photos">
+              <div class="step-art upload-art">
+                <div class="photo-card photo-one"><div></div></div><div class="photo-card photo-two"><div></div></div>
+                <div class="upload-phone"><div class="mini-scene"></div></div><div class="upload-cloud">↑</div>
+              </div>
+              <span class="step-number">2</span><strong>Upload Photos</strong><p>Add current site photos from a phone or computer.</p>
+            </button>
+
+            <button type="button" class="workflow-step" data-step="2" aria-label="Step 3: Create visuals">
+              <div class="step-art visual-art">
+                <div class="visual-before"><span>Before</span></div><div class="visual-after"><span>After</span></div><div class="visual-swipe"><b>↔</b></div>
+              </div>
+              <span class="step-number">3</span><strong>Create Visuals</strong><p>Show the customer a finished-look concept from their own photo.</p>
+            </button>
+
+            <button type="button" class="workflow-step" data-step="3" aria-label="Step 4: Build quote">
+              <div class="step-art quote-art">
+                <div class="material-chip chip-one">Pavers <b>$65/m²</b></div><div class="material-chip chip-two">Labour <b>$3,200</b></div>
+                <div class="quote-sheet"><small>TRADE QUOTE</small><strong>$14,350</strong><span>Materials + labour</span><em>Send Quote</em></div>
+              </div>
+              <span class="step-number">4</span><strong>Build Quote</strong><p>Pricing, materials and labour assemble into a professional quote.</p>
+            </button>
+
+            <button type="button" class="workflow-step" data-step="4" aria-label="Step 5: Approve and schedule">
+              <div class="step-art approval-art">
+                <div class="approved-card"><small>QUOTE APPROVED</small><b>✓</b><span>Job created</span></div>
+                <div class="calendar-card"><b>APR</b><div><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Paving</span></div>
+              </div>
+              <span class="step-number">5</span><strong>Approve &amp; Schedule</strong><p>The accepted quote becomes a job and moves onto the schedule.</p>
+            </button>
+
+            <button type="button" class="workflow-step" data-step="5" aria-label="Step 6: Job completed">
+              <div class="step-art complete-art">
+                <div class="finished-scene"><div class="finished-garden"></div><div class="finished-paving"></div></div><div class="complete-check">✓</div>
+              </div>
+              <span class="step-number">6</span><strong>Job Completed</strong><p>Track progress, finish the job and move it into closeout.</p>
+            </button>
+          </div>
+          <div class="workflow-mobile-controls">
+            <button type="button" class="previous-step" aria-label="Previous workflow step">←</button>
+            <div class="workflow-dots" aria-label="Workflow navigation"></div>
+            <button type="button" class="next-step" aria-label="Next workflow step">→</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="solutions" class="section section-dark">
+    <section id="products" class="section products-section">
       <div class="wrap">
-        <div class="section-heading light">
-          <p class="eyebrow">Core business system</p>
-          <h2>The admin work owners need to see.</h2>
-          <p>Not another chart-heavy dashboard. The focus is on what is happening, what needs attention and what should happen next.</p>
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow blue">Trade &amp; Quote Products</p>
+            <h2>Everything you need to quote, manage and grow.</h2>
+          </div>
+          <p>Trade-first tools that can work together without forcing the owner to re-enter the same customer, scope and job information at every step.</p>
         </div>
-        <div class="solutions-grid">
-          <article><div class="icon">01</div><h3>Inbox & enquiries</h3><p>Original message, extracted details, missing information and a draft reply in one review screen.</p></article>
-          <article><div class="icon">02</div><h3>Triage & approvals</h3><p>Recommended next actions with human override, notes, holds and an audit trail.</p></article>
-          <article><div class="icon">03</div><h3>Quotes & jobs</h3><p>Turn approved opportunities into clear quote drafts, site visits and trackable jobs.</p></article>
-          <article><div class="icon">04</div><h3>Finance closeout</h3><p>Make completed jobs visible for invoicing and prepare reminders for review when payments are overdue.</p></article>
-          <article><div class="icon">05</div><h3>Owner overview</h3><p>One screen for approvals, active work, ready-to-invoice jobs, overdue items and customers you are waiting on.</p></article>
-          <article><div class="icon">06</div><h3>Vertical packs</h3><p>Add specialist fields, terminology, calculations and rules for each industry without rebuilding the core system.</p></article>
+
+        <div class="product-grid">
+          <article class="product-card reveal">
+            <div class="product-icon">⚡</div><h3>QuickQuote</h3><p>Create structured trade quotes quickly with materials, labour, margin and job detail kept together.</p>
+            <div class="mini-quote"><span>Smith Residence</span><b>$14,350</b><i>Send Quote</i></div>
+            <a href="https://quickquote-paving-hardscapes.netlify.app" target="_blank" rel="noopener">Open current demo →</a>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-icon">▣</div><h3>Makeover Visualiser</h3><p>Help customers understand the proposed work with a before-and-after concept built from their site photo.</p>
+            <div class="mini-before-after"><span>Before</span><span>After</span><b>↔</b></div>
+            <a href="#demo">See it in a demo →</a>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-icon">▤</div><h3>Price Book</h3><p>Keep materials, labour and common job items organised so quotes use consistent business pricing.</p>
+            <div class="mini-price"><span>Pavers <b>$65/m²</b></span><span>Sleeper wall <b>$120/m</b></span><span>Turf <b>$12/m²</b></span></div>
+            <a href="#demo">See pricing workflow →</a>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-icon">✓</div><h3>Approval Workflow</h3><p>Track quote status and keep customer-facing actions under human approval.</p>
+            <div class="mini-status"><span class="done">Quote sent</span><span class="done">Client viewed</span><span class="done">Approved</span><span>Job created</span></div>
+            <a href="#demo">See approval flow →</a>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-icon">▦</div><h3>Scheduling</h3><p>Move approved work onto a clear job schedule and keep work status visible.</p>
+            <div class="mini-calendar"><b>MON</b><b>TUE</b><b>WED</b><span class="green">Site prep</span><span class="orange">Paving</span><span class="purple">Retaining</span></div>
+            <a href="#demo">See job flow →</a>
+          </article>
+          <article class="product-card reveal">
+            <div class="product-icon">$</div><h3>Finance Closeout</h3><p>Keep completed work visible for invoicing, costs and job closeout rather than losing it after the tools are packed up.</p>
+            <div class="mini-profit"><div>78%</div><span>Revenue <b>$14,350</b><br>Costs <b>$3,120</b><br>Closeout <b>Ready</b></span></div>
+            <a href="#demo">See closeout flow →</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="industries" class="section">
-      <div class="wrap industry-grid">
-        <div>
-          <p class="eyebrow">Built vertically</p>
-          <h2>One strong core.<br>Different industry brains.</h2>
-          <p class="lead">The shared business workflow stays consistent. Each vertical pack teaches it what matters for a specific industry.</p>
+    <section class="results-band">
+      <div class="wrap results-grid">
+        <div><small>BUILT FOR AUSTRALIAN TRADE BUSINESSES</small><strong>One connected job story.</strong></div>
+        <div><span>⚡</span><b>Quote faster</b><small>Less repeated admin.</small></div>
+        <div><span>✓</span><b>Manage jobs clearly</b><small>Know what happens next.</small></div>
+        <div><span>↗</span><b>Win more work</b><small>Present the job professionally.</small></div>
+      </div>
+    </section>
+
+    <section id="platform" class="section platform-section">
+      <div class="wrap">
+        <div class="section-heading compact reveal">
+          <div><p class="eyebrow blue">More VBS products</p><h2>Other workflows, kept secondary.</h2></div>
+          <p>The portfolio extends beyond trade quoting, but the website keeps the commercial focus on the trade workflow first.</p>
         </div>
-        <div class="industry-list">
-          <article class="active"><div><small>FIRST PACK</small><h3>Paving & hardscapes</h3><p>Measurements, access, excavation, materials, waste, borders, drainage, labour, equipment, margin and GST.</p></div><span>In development</span></article>
-          <article><div><h3>Concreting</h3><p>A separate pack using the same core business system.</p></div><span>Planned</span></article>
-          <article><div><h3>Fencing</h3><p>A separate pack using the same core business system.</p></div><span>Planned</span></article>
-          <article><div><h3>Plumbing</h3><p>Specialist logic added after workflow research.</p></div><span>Research</span></article>
+        <div class="platform-grid">
+          <article><span class="status available">Available / Demo</span><div class="platform-icon">▧</div><h3>Trainer Control Centre</h3><p>Mining training workflow and compliance administration.</p></article>
+          <article><span class="status available">Available / Demo</span><div class="platform-icon">▥</div><h3>Business Operations Hub</h3><p>Connected enquiries, approvals, jobs and owner overview.</p></article>
+          <article><span class="status early">Early Access</span><div class="platform-icon">✦</div><h3>VBS Life Agent</h3><p>Personal AI assistant for email and everyday admin.</p></article>
+          <article><span class="status early">Early Access</span><div class="platform-icon">✉</div><h3>AI Inbox &amp; Admin</h3><p>Inbox triage, extraction, drafting and human-approved actions.</p></article>
+          <article><span class="status dev">In Development</span><div class="platform-icon">◎</div><h3>NDIS Admin Assistant</h3><p>Privacy-safe specialist workflow design for NDIS administration.</p></article>
+          <article><span class="status dev">In Development</span><div class="platform-icon">▤</div><h3>Accounting &amp; Bookkeeping</h3><p>Workflow specification for recurring finance administration.</p></article>
+          <article><span class="status dev">In Development</span><div class="platform-icon">◉</div><h3>Recruitment &amp; Workforce</h3><p>Candidate, mobilisation and compliance workflow design.</p></article>
         </div>
       </div>
     </section>
 
-    <section id="principles" class="section section-soft">
-      <div class="wrap principles-grid">
-        <div>
-          <p class="eyebrow">Designed for control</p>
-          <h2>AI can prepare the work. You approve the action.</h2>
+    <section class="section trust-section">
+      <div class="wrap trust-grid">
+        <div class="reveal">
+          <p class="eyebrow blue">Designed for control</p>
+          <h2>AI prepares the work.<br>You approve the action.</h2>
         </div>
-        <div class="principles-list">
-          <p><b>Review before sending.</b> Customer-facing drafts remain visible and editable before they go anywhere.</p>
-          <p><b>Clear audit history.</b> Important workflow decisions can be tied back to the record that caused them.</p>
-          <p><b>No black-box management.</b> Recommendations show what is missing and why the next action is suggested.</p>
-          <p><b>Start simple.</b> Prove the workflow first, then connect external services only where they create real value.</p>
+        <div class="trust-list reveal">
+          <div><span>01</span><p><b>Human approval.</b> Customer-facing and financially meaningful actions remain controlled by a person.</p></div>
+          <div><span>02</span><p><b>Traceable workflow.</b> Customer, quote and job context stay connected instead of disappearing into separate apps.</p></div>
+          <div><span>03</span><p><b>Trade-specific logic.</b> The reusable core can support vertical-specific pricing, fields, terminology and rules.</p></div>
         </div>
       </div>
     </section>
 
-    <section id="demo" class="section cta-section">
-      <div class="wrap cta-card">
-        <div>
+    <section id="demo" class="section demo-section">
+      <div class="wrap demo-card">
+        <div class="demo-copy">
           <p class="eyebrow">Vertical Business Solutions</p>
-          <h2>See the workflow, not another sales pitch.</h2>
-          <p>We are building working demonstrations around real business administration problems, starting with trade and service workflows.</p>
+          <h2>See the trade workflow working.</h2>
+          <p>Tell us what trade or service business you run and which workflow is costing you the most time. We will use the right VBS demonstration as the starting point.</p>
+          <div class="demo-points"><span>✓ Quote workflow</span><span>✓ Before / after visual</span><span>✓ Approvals &amp; scheduling</span><span>✓ Job closeout</span></div>
         </div>
-        <div class="cta-actions">
-          <a class="button primary" href="#contact-note">Request a demo</a>
-          <span id="contact-note">Contact details can be connected before launch.</span>
-        </div>
+        <form class="demo-form" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?submitted=true#demo">
+          <input type="hidden" name="form-name" value="demo-request" />
+          <p class="hidden-field"><label>Do not fill this out: <input name="bot-field" /></label></p>
+          <div id="form-success" class="form-success" role="status" hidden>Thanks — your demo request has been received.</div>
+          <label>Name<input required name="name" autocomplete="name" /></label>
+          <label>Email<input required type="email" name="email" autocomplete="email" /></label>
+          <label>Business / trade<input name="business" autocomplete="organization" placeholder="e.g. paving, landscaping, plumbing" /></label>
+          <label>What do you want to improve?<textarea name="message" rows="4" placeholder="Quoting, scheduling, admin, follow-up…"></textarea></label>
+          <button class="button primary wide" type="submit">Request a demo <span>→</span></button>
+          <small>We will only use these details to respond to your enquiry.</small>
+        </form>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="wrap footer-wrap">
-      <a class="brand footer-brand" href="#top"><span class="brand-mark">V</span><span class="brand-copy"><strong>Vertical</strong><small>Business Solutions</small></span></a>
-      <p>Practical business systems. Human-controlled decisions.</p>
-      <small>© <span id="year"></span> Vertical Business Solutions. All rights reserved.</small>
+    <div class="wrap footer-top">
+      <a class="brand footer-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+        <span class="brand-copy"><strong>Vertical</strong><small>Business Solutions</small></span>
+      </a>
+      <p>Trade quoting, workflow and business systems with human-controlled actions.</p>
+      <a class="footer-cta" href="#demo">Book a demo →</a>
     </div>
+    <div class="wrap footer-bottom"><span>© <span id="year"></span> Vertical Business Solutions</span><span>Proudly Australian</span></div>
   </footer>
 
   <script src="script.js"></script>

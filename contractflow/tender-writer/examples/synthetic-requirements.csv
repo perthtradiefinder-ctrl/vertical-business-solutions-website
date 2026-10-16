@@ -1,0 +1,15 @@
+"id","sourceLine","text","category","mandatory","status","evidence","owner","notes","response"
+"REQ-001","2","1. Provide a workforce mobilisation plan.","Workforce & mobilisation","false","In review","EVD-001","Fictional reviewer","","[REVIEW REQUIRED — confirm relevance, currency and full clause coverage]
+
+Response basis for REQ-001 (buyer source line 2):
+Evidence EVD-001 — SYNTHETIC PLAN v1; section 2, page 1; recorded verifier: Fictional reviewer.
+Source excerpt: “For this fictional exercise, the proposed team comprises two mechanical fitters. Availability has not been confirmed.”
+
+
+Reviewer drafting action: Confirm available roles and numbers, competencies, roster, induction, mobilisation dates and fatigue controls. Do not infer availability from workforce size."
+"REQ-002","3","2. The tenderer must provide evidence of relevant insurance.","Licences & insurance","true","In review","","","","[REVIEW REQUIRED — confirm relevance, currency and full clause coverage]
+
+Response basis for REQ-002 (buyer source line 3):
+[GAP — No evidence linked to this requirement.]
+
+Reviewer drafting action: Confirm legal entity, policy/licence scope, expiry dates and buyer limits with the authorised reviewer."

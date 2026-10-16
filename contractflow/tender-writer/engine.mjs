@@ -26,11 +26,11 @@ export function classifyRequirement(text) {
 function normalise(s) { return s.replace(/\s+/g, " ").trim(); }
 export function extractRequirements(input) {
   const text = String(input || "").replace(/\r\n?/g, "\n");
-  const lines = text.split("\n").map(normalise).filter(Boolean);
+  const lines = text.split("\n").map((raw, index) => ({ value: normalise(raw), line: index + 1 })).filter(item => item.value);
   const candidates = [];
   // A complete line is retained for source traceability; do not infer missing clauses.
   for (let lineNo = 0; lineNo < lines.length; lineNo++) {
-    const line = lines[lineNo];
+    const line = lines[lineNo].value;
     if (line.length < 12) continue;
     const chunks = line.length > 400
       ? (line.match(/[^.!?;]+[.!?;]?/g) || [line]).map(normalise)
@@ -38,7 +38,7 @@ export function extractRequirements(input) {
     for (const chunk of chunks) {
       if (/\b(must|shall|required|mandatory|compulsory|provide|submit|include|demonstrate|attach|upload|complete|evidence of|minimum|at least)\b/i.test(chunk) ||
           /^(?:\d+(?:\.\d+)*[.)]?|[a-z][.)]|[-*•])\s+/i.test(chunk)) {
-        candidates.push({ sourceLine: lineNo + 1, text: chunk });
+        candidates.push({ sourceLine: lines[lineNo].line, text: chunk });
       }
     }
   }
@@ -71,8 +71,9 @@ export function assessReadiness({ requirements = [], evidence = [], approvals = 
   if (!deadline.trim()) blockers.push("Closing date and time zone have not been verified.");
   if (!addendaConfirmed) blockers.push("Latest buyer addenda and amendments have not been confirmed.");
   if (!requirements.length) blockers.push("No requirements have been extracted or manually added.");
-  const missing = requirements.filter(r => r.status !== "Satisfied" || !r.evidence.trim());
-  if (missing.length) blockers.push(missing.length + " requirements are not satisfied with referenced evidence.");
+  const verifiedIds = new Set(evidence.filter(e => e.status === "Verified" && String(e.reviewer || "").trim() && String(e.source || "").trim()).map(e => e.id));
+  const missing = requirements.filter(r => r.status !== "Satisfied" || !verifiedIds.has(String(r.evidence || "").trim()));
+  if (missing.length) blockers.push(missing.length + " requirements lack a satisfied status linked to a verified evidence ID.");
   const unverified = evidence.filter(e => e.status !== "Verified");
   if (unverified.length) blockers.push(unverified.length + " evidence records are not verified.");
   for (const [key, label] of Object.entries({

@@ -1,4 +1,4 @@
-import { classifyDocument, extractRequirements, assessReadiness, draftOutline, requirementsCsv, evidenceCsv } from "./engine.mjs";
+import { classifyDocument, extractRequirements, assessReadiness, draftOutline, requirementsCsv, evidenceCsv, auditResponses, reviewReport } from "./engine.mjs";
 
 const byId = id => document.getElementById(id);
 const fields = ["client","buyer","title","reference","source","deadline","type","sourceText","addenda"];
@@ -20,6 +20,14 @@ function bid() {
     requirements: state.requirements, evidence: state.evidence,
     approvals: Object.fromEntries(approvals.map(key => [key, document.querySelector('[data-approval="' + key + '"]').checked]))
   };
+}
+function invalidateOutput() {
+  byId("draftText").value = "";
+  byId("auditSummary").textContent = "Inputs changed — rerun the quality review.";
+  const body = byId("auditRows");
+  body.replaceChildren();
+  const row = el("tr"), cell = el("td", "Review results must be refreshed.", "empty");
+  cell.colSpan = 3; row.append(cell); body.append(row);
 }
 function refreshDashboard() {
   const report = assessReadiness(bid());
@@ -56,7 +64,7 @@ function renderRequirements() {
   const body = byId("reqRows"); body.replaceChildren();
   if (!state.requirements.length) {
     const row = el("tr"); const c = addCell(row, "No requirements yet. Analyse extracted text or add a buyer clause.");
-    c.colSpan = 5; c.className = "empty"; body.append(row); return;
+    c.colSpan = 6; c.className = "empty"; body.append(row); return;
   }
   for (const item of state.requirements) {
     const row = el("tr");
@@ -70,10 +78,21 @@ function renderRequirements() {
     addCell(row, selectControl(
       ["Unassessed", "Gap", "In review", "Satisfied", "Not applicable — justify"],
       item.status,
-      v => { item.status = v; refreshDashboard(); }
+      v => { item.status = v; invalidateOutput(); refreshDashboard(); }
     ));
-    addCell(row, textControl(item.evidence, "Evidence ID / citation", v => { item.evidence = v; refreshDashboard(); }));
-    addCell(row, textControl(item.owner, "Named reviewer", v => { item.owner = v; }));
+    addCell(row, textControl(item.evidence, "Evidence ID / citation", v => { item.evidence = v; invalidateOutput(); refreshDashboard(); }));
+    addCell(row, textControl(item.owner, "Named reviewer", v => { item.owner = v; invalidateOutput(); refreshDashboard(); }));
+    const responseCell = addCell(row, el("textarea", "", "response-input"));
+    const response = responseCell.querySelector("textarea");
+    response.rows = 4;
+    response.value = item.response || "";
+    response.placeholder = "Write only client-confirmed facts and the methodology addressing this clause.";
+    response.setAttribute("aria-label", "Draft response for " + item.id);
+    response.addEventListener("input", () => {
+      item.response = response.value;
+      invalidateOutput();
+      refreshDashboard();
+    });
     body.append(row);
   }
 }
@@ -100,12 +119,15 @@ function download(name, text, mime) {
 function analyse() {
   const text = value("sourceText");
   if (!text) { byId("intakeInfo").textContent = "Paste extracted text before analysing."; return; }
+  if (state.requirements.some(r => r.response?.trim() || r.status !== "Unassessed" || r.evidence?.trim())) {
+    if (!window.confirm("Re-extracting will replace the current compliance matrix and all draft answers. Export them first if needed. Continue?")) return;
+  }
   const items = extractRequirements(text);
   state.requirements = items;
   byId("type").value = classifyDocument(text);
   byId("intakeInfo").textContent = items.length + " candidate clauses extracted. Human verification required; not all clauses will be detected.";
   byId("draftText").value = "";
-  renderRequirements(); refreshDashboard();
+  invalidateOutput(); renderRequirements(); refreshDashboard();
 }
 byId("analyse").addEventListener("click", analyse);
 byId("manualAdd").addEventListener("click", () => {
@@ -115,9 +137,9 @@ byId("manualAdd").addEventListener("click", () => {
   state.requirements.push({
     id: "REQ-" + String(seq).padStart(3, "0"), sourceLine: "manual",
     text: clause, category: "Other requirements", mandatory: true,
-    status: "Unassessed", evidence: "", owner: "", notes: ""
+    status: "Unassessed", evidence: "", owner: "", notes: "", response: ""
   });
-  byId("manualClause").value = ""; renderRequirements(); refreshDashboard();
+  byId("manualClause").value = ""; invalidateOutput(); renderRequirements(); refreshDashboard();
 });
 byId("evidenceForm").addEventListener("submit", event => {
   event.preventDefault();
@@ -133,13 +155,36 @@ byId("evidenceForm").addEventListener("submit", event => {
     id: "EVD-" + String(state.evidence.length + 1).padStart(3, "0"),
     description, source, status, reviewer
   });
-  byId("evidenceForm").reset(); renderEvidence(); refreshDashboard();
+  byId("evidenceForm").reset(); invalidateOutput(); renderEvidence(); refreshDashboard();
 });
 byId("evReviewer").addEventListener("input", () => byId("evReviewer").setCustomValidity(""));
 for (const id of fields) {
-  byId(id).addEventListener(id === "addenda" || id === "type" ? "change" : "input", refreshDashboard);
+  byId(id).addEventListener(id === "addenda" || id === "type" ? "change" : "input", () => { invalidateOutput(); refreshDashboard(); });
 }
-for (const key of approvals) document.querySelector('[data-approval="' + key + '"]').addEventListener("change", refreshDashboard);
+for (const key of approvals) document.querySelector('[data-approval="' + key + '"]').addEventListener("change", () => { invalidateOutput(); refreshDashboard(); });
+function runAudit() {
+  const result = auditResponses(bid());
+  byId("auditSummary").textContent = result.examined + " clauses examined · " + result.blockers +
+    " blockers · " + result.reviews + " review flags. Automated heuristics only.";
+  const body = byId("auditRows"); body.replaceChildren();
+  if (!result.findings.length) {
+    const row = el("tr"), cell = el("td", "No rule-based flags found. Human technical, compliance and commercial review is still mandatory.", "empty");
+    cell.colSpan = 3; row.append(cell); body.append(row);
+  } else {
+    for (const finding of result.findings) {
+      const row = el("tr");
+      addCell(row, finding.id);
+      addCell(row, finding.severity);
+      addCell(row, finding.finding);
+      body.append(row);
+    }
+  }
+}
+byId("runAudit").addEventListener("click", runAudit);
+byId("exportAudit").addEventListener("click", () => {
+  runAudit();
+  download("CONTRACTFLOW_RULE_BASED_REVIEW.md", reviewReport(bid()), "text/markdown");
+});
 byId("buildDraft").addEventListener("click", () => { byId("draftText").value = draftOutline(bid()); });
 byId("downloadDraft").addEventListener("click", () => {
   if (!value("draftText")) byId("draftText").value = draftOutline(bid());
@@ -175,7 +220,7 @@ function reset() {
   byId("draftText").value = ""; byId("manualClause").value = "";
   byId("evidenceForm").reset();
   byId("intakeInfo").textContent = "Session cleared; nothing stored or transmitted.";
-  renderRequirements(); renderEvidence(); refreshDashboard();
+  renderRequirements(); renderEvidence(); invalidateOutput(); refreshDashboard();
 }
 byId("clear").addEventListener("click", () => {
   if (window.confirm("Clear all in-memory work in this browser tab? Download required drafts first.")) reset();

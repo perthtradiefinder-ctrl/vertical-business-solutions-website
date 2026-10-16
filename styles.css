@@ -121,3 +121,7 @@ footer{background:#05182f;color:#fff;padding:36px 0 22px}.footer-top{display:gri
   .footer-bottom{flex-direction:column;gap:8px}.section-heading h2{font-size:39px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-reveal-line,.workflow-step.active *{animation:none!important}.reveal{opacity:1;transform:none;transition:none}}
+
+/* ContractFlow entry point on the VBS portfolio grid */
+.cf-platform-link{display:inline-flex;align-items:center;margin-top:15px;color:#0878ff;font-weight:800;font-size:12px;letter-spacing:.01em}
+.cf-platform-link:hover{text-decoration:underline;text-underline-offset:3px}

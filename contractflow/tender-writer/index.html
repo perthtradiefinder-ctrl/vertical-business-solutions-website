@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ContractFlow | Private Tender Writer Workbench — Internal Prototype</title>
+  <link rel="stylesheet" href="./writer.css">
+  <script type="module" src="./writer.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brandmark">CF</div><div><strong>CONTRACTFLOW</strong><small>WA Mining Tender Writer / Internal prototype</small></div></div>
+    <div class="header-right"><span class="mode">LOCAL-ONLY · NO SERVER UPLOAD</span><span class="version">v0.1</span></div>
+  </header>
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="eyebrow">BID CONTROL WORKSPACE</div>
+      <h1>Build a stronger bid.</h1>
+      <p class="sidebar-lead">Convert a tender's extracted text into a traceable compliance matrix and draft structure.</p>
+      <nav aria-label="Sections">
+        <a href="#intake">01&nbsp; Intake & source</a>
+        <a href="#requirements">02&nbsp; Compliance matrix</a>
+        <a href="#evidence">03&nbsp; Evidence register</a>
+        <a href="#approvals">04&nbsp; Approval gates</a>
+        <a href="#draft">05&nbsp; Draft builder</a>
+      </nav>
+      <div class="notice">
+        <strong>Not an autonomous tender submitter</strong>
+        <p>This prototype does not call an AI model, upload files, contact buyers or submit a bid. Any generated outline is a drafting aid, not a completed professional response.</p>
+      </div>
+      <button id="sample" type="button" class="btn-secondary full">Load synthetic example</button>
+      <button id="clear" type="button" class="btn-ghost full">Clear session</button>
+    </aside>
+    <div class="workspace">
+      <section class="welcome">
+        <div><div class="eyebrow">OPPORTUNITY → EVIDENCE → APPROVAL</div><h2>Tender response workbench</h2><p>Designed for WA mining maintenance, shutdowns, civil construction and workforce supply.</p></div>
+        <div class="status-panel" aria-live="polite">
+          <div class="status-label">Current bid readiness</div>
+          <div id="status" class="status">NOT READY — REVIEW REQUIRED</div>
+          <div id="counts" class="status-count">0 clauses · 0 evidence records</div>
+        </div>
+      </section>
+
+      <section id="intake" class="card">
+        <div class="section-header"><span class="section-count">01</span><div><h3>Opportunity intake</h3><p>Record the buyer, original source and latest tender text. Keep commercial documents private.</p></div></div>
+        <div class="form-grid">
+          <label>Client legal entity<input id="client" placeholder="Legal entity awaiting confirmation" autocomplete="off"></label>
+          <label>Buyer / principal<input id="buyer" placeholder="Buyer organisation"></label>
+          <label>Package title<input id="title" placeholder="Maintenance package title"></label>
+          <label>Package reference<input id="reference" placeholder="RFT / EOI / RFQ ID"></label>
+          <label>Official source / portal reference<input id="source" placeholder="https://buyer.example/..."></label>
+          <label>Closing date, time and timezone<input id="deadline" placeholder="YYYY-MM-DD, HH:MM AWST — verify"></label>
+          <label>Procurement type<select id="type"><option>Unclassified</option><option>Tender / RFT</option><option>Request for quotation</option><option>Expression of interest</option><option>Supplier prequalification</option></select></label>
+          <label class="checkline"><input id="addenda" type="checkbox"> Latest addenda confirmed against buyer source</label>
+        </div>
+        <label class="big-label" for="sourceText">Tender text (copied/extracted)</label>
+        <textarea id="sourceText" rows="10" placeholder="Paste text extracted from a tender package. This prototype accepts text only; it does not parse PDFs or Word documents."></textarea>
+        <div class="toolbar">
+          <button id="analyse" type="button" class="btn-primary">Extract requirements</button>
+          <label class="file-button">Load TXT / MD file<input id="file" type="file" accept=".txt,.md,text/plain,text/markdown"></label>
+          <span id="intakeInfo" class="micro">No document analysed</span>
+        </div>
+      </section>
+
+      <section id="requirements" class="card">
+        <div class="section-header"><span class="section-count">02</span><div><h3>Compliance matrix</h3><p>Automated extraction identifies candidate clauses only. Manually verify each original requirement, attachment and addendum.</p></div></div>
+        <div class="toolbar compact">
+          <label class="grow">Add a missed clause<input id="manualClause" placeholder="Paste exact missing buyer requirement"></label>
+          <button id="manualAdd" class="btn-secondary" type="button">Add clause</button>
+          <button id="csvReq" class="btn-ghost" type="button">Export CSV</button>
+        </div>
+        <div class="table-scroll">
+          <table><thead><tr><th>ID / Source</th><th>Buyer wording & category</th><th>Review status</th><th>Evidence ID / source</th><th>Action owner</th></tr></thead><tbody id="reqRows"><tr><td colspan="5" class="empty">Analyse the tender text to populate requirements.</td></tr></tbody></table>
+        </div>
+      </section>
+
+      <section id="evidence" class="card">
+        <div class="section-header"><span class="section-count">03</span><div><h3>Evidence register</h3><p>Record only genuine, client-authorised evidence. Verification is a human responsibility.</p></div></div>
+        <form id="evidenceForm" class="form-grid compact-form">
+          <label>Evidence description<input id="evDescription" required placeholder="Current insurance schedule, named project reference…"></label>
+          <label>Document reference / source<input id="evSource" required placeholder="Internal document ID or approved reference"></label>
+          <label>Verification status<select id="evStatus"><option>Unverified</option><option>Verified</option></select></label>
+          <label>Named reviewer<input id="evReviewer" placeholder="Required if marked verified"></label>
+          <button type="submit" class="btn-secondary">Add evidence</button>
+          <button id="csvEvidence" type="button" class="btn-ghost">Export evidence CSV</button>
+        </form>
+        <div class="table-scroll"><table><thead><tr><th>ID</th><th>Description</th><th>Reference</th><th>Status</th><th>Reviewer</th></tr></thead><tbody id="evRows"><tr><td colspan="5" class="empty">No supporting evidence recorded.</td></tr></tbody></table></div>
+      </section>
+
+      <section id="approvals" class="card">
+        <div class="section-header"><span class="section-count">04</span><div><h3>Approval gates</h3><p>These internal checklist ticks do not constitute a legal authorisation or a signed approval record.</p></div></div>
+        <div class="approval-grid">
+          <label><input type="checkbox" data-approval="mandate"><span>Written client engagement and mandate recorded</span></label>
+          <label><input type="checkbox" data-approval="technical"><span>Named technical reviewer has approved response</span></label>
+          <label><input type="checkbox" data-approval="hse"><span>Competent HSE reviewer has approved claims</span></label>
+          <label><input type="checkbox" data-approval="commercial"><span>Client has signed off pricing and exclusions</span></label>
+          <label><input type="checkbox" data-approval="signatory"><span>Authorised signatory has completed final review</span></label>
+        </div>
+        <div class="blockers"><strong>Outstanding review items</strong><ul id="blockers"><li>Client mandate, verified documents and review gates are required.</li></ul></div>
+      </section>
+
+      <section id="draft" class="card">
+        <div class="section-header"><span class="section-count">05</span><div><h3>Controlled draft builder</h3><p>Creates a clause-linked Markdown response outline with explicit information gaps and mandatory approvals.</p></div></div>
+        <div class="toolbar"><button id="buildDraft" class="btn-primary" type="button">Build draft outline</button><button id="downloadDraft" class="btn-secondary" type="button">Export draft .md</button></div>
+        <label class="big-label" for="draftText">Generated outline — not approved</label>
+        <textarea id="draftText" rows="15" readonly placeholder="Your draft outline will appear here."></textarea>
+      </section>
+
+      <footer><strong>VERTICAL BUSINESS SOLUTIONS</strong><span>ContractFlow · Internal working prototype · No submission capability · No data persistence</span></footer>
+    </div>
+  </main>
+</body>
+</html>

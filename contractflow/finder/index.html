@@ -19,6 +19,7 @@
     label{display:flex;flex-direction:column;font-size:13px;font-weight:750;gap:5px}
     input,select{font:inherit;font-size:15px;width:100%;background:white;color:#16263e;padding:11px 12px;border:1px solid #aabed4;border-radius:9px;min-height:46px}
     .toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:17px 0}
+    .overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 22px}.stat{background:white;border:1px solid var(--line);border-radius:11px;padding:12px 15px}.stat strong{font-size:27px;display:block}.stat small{font-size:12px;color:var(--mid)}.qualification{border-left:3px solid #a9843c;background:#fcf8ed;padding:8px 12px;margin:10px 0;font-size:13px}
     .muted{color:var(--mid)}.small{font-size:13px}.reset{background:white;border:1px solid #b7cce3;border-radius:9px;font:inherit;padding:9px 16px;cursor:pointer}
     .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
     article{border:1px solid var(--line);border-radius:13px;background:#fff;padding:20px;box-shadow:0 4px 14px #133b6b0b;min-width:0}
@@ -32,7 +33,7 @@
     .textlink{font-size:14px;font-weight:700;padding:9px 0}.empty{border:1px dashed #bacbdc;border-radius:12px;padding:36px;text-align:center;background:white}
     .error{border:1px solid #f0b7b7;background:#fff2f2;border-radius:12px;padding:20px}.policy{margin-top:26px;padding:18px 20px;border-radius:12px;background:white;border:1px solid var(--line)}
     footer{padding:25px 0;background:#0a203f;color:#c3d4e9}footer a{color:white}.hidden{display:none!important}
-    @media(max-width:840px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:840px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.overview{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:650px){.list{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.nav nav{gap:9px;flex-wrap:wrap}.hero{padding:28px 0}.toolbar{align-items:flex-start;flex-direction:column}article{padding:16px}}
   </style>
 </head>
@@ -46,6 +47,12 @@
  <div class="notice" role="note"><strong>QA review build — not approved for public release.</strong> This is a curated snapshot, not a live procurement feed. Listed-open status may change. Always confirm the original portal, full scope and exact deadline before deciding to bid.</div>
 </div></section>
 <main class="wrap">
+ <section class="overview" aria-label="Opportunity review snapshot">
+  <div class="stat"><strong id="n-open">—</strong><small>Fresh, listed-open EOIs</small></div>
+  <div class="stat"><strong id="n-stale">—</strong><small>Verification expired</small></div>
+  <div class="stat"><strong id="n-closed">—</strong><small>Historical / closed</small></div>
+  <div class="stat"><strong id="n-unverified">—</strong><small>Unverified</small></div>
+ </section>
  <div class="controls" role="search" aria-label="Find opportunities">
   <label>Keyword or buyer<input id="q" type="search" placeholder="e.g. mechanical, Greatland, Pilbara" autocomplete="off"></label>
   <label>Work category<select id="category"><option value="">All work categories</option></select></label>
@@ -79,7 +86,16 @@
  const list=$("list"),count=$("count"),empty=$("empty"),error=$("error");
  let rows=[];
  const HOURS_48=48*60*60*1000;
- function safeTime(date){return /^\d{4}-\d{2}-\d{2}$/.test(date||"")?Date.parse(date+"T00:00:00+08:00"):NaN}
+ function validDay(date){if(typeof date!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(date))return false;const n=Date.parse(date+"T12:00:00Z");return Number.isFinite(n)&&new Date(n).toISOString().slice(0,10)===date}
+ function safeTime(date){return validDay(date)?Date.parse(date+"T00:00:00+08:00"):NaN}
+ function eligibleRow(r){
+   if(!r||typeof r!=="object"||!["open","closed","unverified"].includes(r.status)||typeof r.id!=="string"||!r.id.trim())return false;
+   if(!["title","buyer","project","region","category","type","description"].every(function(k){return typeof r[k]==="string"&&r[k].trim().length>0}))return false;
+   if(typeof r.sourceUrl!=="string"||!/^https:\/\/gateway\.(prd\.)?icn\.org\.au\//.test(r.sourceUrl))return false;
+   if(!validDay(r.checkedDate)||!(r.closingDate===null||validDay(r.closingDate)))return false;
+   if(r.status==="open"&&(!validDay(r.closingDate)||r.closingTimezone!=="AWST"||r.closingTimeKnown!==false))return false;
+   return true;
+ }
  function stateOf(row){
    if(row.status!=="open") return row.status;
    const verifiedAt=safeTime(row.checkedDate),closingAt=safeTime(row.closingDate),now=Date.now();
@@ -105,13 +121,16 @@
    const deadline=row.closingDate?row.closingDate+" ("+row.closingTimezone+", exact hour unverified)":"Not published / historical";
    dates.append(textNode("div","Published close: "+deadline),textNode("div","Official source date checked: "+row.checkedDate));
    article.append(dates);
+   article.append(textNode("p",row.scopeReviewed===true?"Package review recorded; verify buyer documentation and qualifications before proceeding.":"Package scope and supplier eligibility have NOT been independently reviewed. The linked project page may contain several separate work packages.","qualification"));
    let actions=document.createElement("div");actions.className="actions";
    const source=document.createElement("a");source.href=row.sourceUrl;source.target="_blank";source.rel="noopener noreferrer";source.textContent="View original notice ↗";source.className="textlink";
-   const enquiry=document.createElement("a");enquiry.href="/contractflow/#enquiry";enquiry.textContent="Request tender help";enquiry.className="button";
+   const enquiry=document.createElement("a");enquiry.href="/contractflow/#enquiry";enquiry.textContent="Request EOI/tender help";enquiry.className="button";
    actions.append(source,enquiry);article.append(actions);
    return article;
  }
  function render(){
+   const totals={open:0,stale:0,closed:0,unverified:0};rows.forEach(function(r){totals[stateOf(r)]++});
+   Object.keys(totals).forEach(function(s){$("n-"+s).textContent=String(totals[s])});
    const selectedStatus=status.value;const q=query.value.trim().toLocaleLowerCase("en-AU");
    const subset=rows.filter(function(r){
      const s=stateOf(r);
@@ -133,9 +152,13 @@
    return response.json();
  }).then(function(data){
    if(!data||!Array.isArray(data.opportunities))throw new Error("Dataset invalid");
+   const seen=new Set();
    rows=data.opportunities.filter(function(r){
-     return r&&typeof r.title==="string"&&typeof r.sourceUrl==="string"&&/^https:\/\/gateway\.(prd\.)?icn\.org\.au\//.test(r.sourceUrl)&&typeof r.checkedDate==="string";
+     if(!eligibleRow(r)||seen.has(r.id))return false;
+     seen.add(r.id);return true;
    });
+   const quarantined=data.opportunities.length-rows.length;
+   if(quarantined){error.textContent=quarantined+" invalid or duplicate source record(s) withheld pending review.";error.classList.remove("hidden")}
    chooseOptions(category,rows.map(function(r){return r.category}));
    chooseOptions(region,rows.map(function(r){return r.region}));
    chooseOptions(type,rows.map(function(r){return r.type}));
@@ -145,6 +168,8 @@
    error.textContent="Finder data could not be loaded. No listings will be shown. Use the official buyer procurement sites or contact VBS for research.";
    error.classList.remove("hidden");
  });
+ document.addEventListener("visibilitychange",function(){if(!document.hidden&&rows.length)render()});
+ setInterval(function(){if(rows.length)render()},60000);
 })();
 </script>
 </body>

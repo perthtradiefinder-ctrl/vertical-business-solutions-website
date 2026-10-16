@@ -11,7 +11,7 @@
 <body>
   <header class="topbar">
     <div class="brand"><div class="brandmark">CF</div><div><strong>CONTRACTFLOW</strong><small>WA Mining Tender Writer / Internal prototype</small></div></div>
-    <div class="header-right"><span class="mode">LOCAL-ONLY · NO SERVER UPLOAD</span><span class="version">v0.1</span></div>
+    <div class="header-right"><span class="mode">LOCAL-ONLY · NO SERVER UPLOAD</span><span class="version">v0.2</span></div>
   </header>
   <main class="shell">
     <aside class="sidebar">
@@ -23,7 +23,8 @@
         <a href="#requirements">02&nbsp; Compliance matrix</a>
         <a href="#evidence">03&nbsp; Evidence register</a>
         <a href="#approvals">04&nbsp; Approval gates</a>
-        <a href="#draft">05&nbsp; Draft builder</a>
+        <a href="#quality">05&nbsp; Quality review</a>
+        <a href="#draft">06&nbsp; Draft builder</a>
       </nav>
       <div class="notice">
         <strong>Not an autonomous tender submitter</strong>
@@ -41,6 +42,16 @@
           <div id="counts" class="status-count">0 clauses · 0 evidence records</div>
         </div>
       </section>
+
+      <details class="quickstart">
+        <summary>How to use the Tender Writer <span>Open quick guide ↓</span></summary>
+        <ol>
+          <li>Load the fictional example or enter your buyer's verified package and extracted text.</li>
+          <li>Extract and manually verify each requirement. Write a response and link verified evidence IDs.</li>
+          <li>Run the quality review, record human approvals, then export the clearly labelled draft.</li>
+        </ol>
+        <p>No AI writing, real buyer contact or bid submission takes place in this version. Never enter confidential tenders into a publicly accessible preview.</p>
+      </details>
 
       <section id="intake" class="card">
         <div class="section-header"><span class="section-count">01</span><div><h3>Opportunity intake</h3><p>Record the buyer, original source and latest tender text. Keep commercial documents private.</p></div></div>
@@ -71,7 +82,7 @@
           <button id="csvReq" class="btn-ghost" type="button">Export CSV</button>
         </div>
         <div class="table-scroll">
-          <table><thead><tr><th>ID / Source</th><th>Buyer wording & category</th><th>Review status</th><th>Evidence ID / source</th><th>Action owner</th></tr></thead><tbody id="reqRows"><tr><td colspan="5" class="empty">Analyse the tender text to populate requirements.</td></tr></tbody></table>
+          <table><thead><tr><th>ID / Source</th><th>Buyer wording & category</th><th>Review status</th><th>Evidence ID / source</th><th>Action owner</th><th>Working response (editable)</th></tr></thead><tbody id="reqRows"><tr><td colspan="6" class="empty">Analyse the tender text to populate requirements.</td></tr></tbody></table>
         </div>
       </section>
 
@@ -100,8 +111,15 @@
         <div class="blockers"><strong>Outstanding review items</strong><ul id="blockers"><li>Client mandate, verified documents and review gates are required.</li></ul></div>
       </section>
 
+      <section id="quality" class="card">
+        <div class="section-header"><span class="section-count">05</span><div><h3>Draft quality review</h3><p>Local rule-based review flags missing answers, unsupported evidence and unusually strong claims. It cannot independently confirm accuracy or replace a professional evaluator.</p></div></div>
+        <div class="toolbar"><button id="runAudit" class="btn-primary" type="button">Run quality review</button><button id="exportAudit" class="btn-secondary" type="button">Export review report .md</button></div>
+        <div id="auditSummary" class="audit-summary" role="status" aria-live="polite">No review run yet</div>
+        <div class="table-scroll"><table><thead><tr><th>Clause</th><th>Severity</th><th>Finding and action</th></tr></thead><tbody id="auditRows"><tr><td colspan="3" class="empty">Run a review to see findings.</td></tr></tbody></table></div>
+      </section>
+
       <section id="draft" class="card">
-        <div class="section-header"><span class="section-count">05</span><div><h3>Controlled draft builder</h3><p>Creates a clause-linked Markdown response outline with explicit information gaps and mandatory approvals.</p></div></div>
+        <div class="section-header"><span class="section-count">06</span><div><h3>Controlled draft builder</h3><p>Combines your clause-specific response drafts with requirement and evidence references; unresolved sections remain marked for review.</p></div></div>
         <div class="toolbar"><button id="buildDraft" class="btn-primary" type="button">Build draft outline</button><button id="downloadDraft" class="btn-secondary" type="button">Export draft .md</button></div>
         <label class="big-label" for="draftText">Generated outline — not approved</label>
         <textarea id="draftText" rows="15" readonly placeholder="Your draft outline will appear here."></textarea>

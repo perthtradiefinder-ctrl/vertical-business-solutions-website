@@ -127,9 +127,9 @@ export function draftOutline({ buyer = "", client = "", reference = "", title = 
       result += "\n**" + r.id + " — Source line " + r.sourceLine + (r.mandatory ? " — mandatory candidate" : "") + "**\n";
       result += "> " + r.text.replace(/\n/g, " ") + "\n\n";
       result += "Status: " + r.status + "\n";
-      result += "Evidence reference: " + (r.evidence.trim() || "[MISSING]") + "\n";
+      result += "Evidence reference: " + (String(r.evidence || "").trim() || "[MISSING]") + "\n";
       result += "Response: " + (String(r.response || "").trim() || "[DRAFT REQUIRED — DO NOT INVENT PROJECTS, INSURANCE, TICKETS OR RESULTS]") + "\n";
-      if (r.notes.trim()) result += "Internal note: " + r.notes.trim() + "\n";
+      if (String(r.notes || "").trim()) result += "Internal note: " + String(r.notes).trim() + "\n";
     }
   }
   result += "\n## 8. Bid approval and exclusions\n[HOLD: Signed client authority, HSE review, technical review, commercial review, current addenda check, final signatory and portal receipt.]\n";

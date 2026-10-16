@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Mining Contract Finder | ContractFlow (Review Build)</title>
+  <meta name="description" content="A source-linked, date-checked Western Australian mining opportunity finder. Review build only.">
+  <style>
+    :root {color-scheme:light;--ink:#12223b;--mid:#52627a;--paper:#f4f7fb;--line:#d9e3ef;--accent:#1056c7;--green:#0f694b;--amber:#8c5815;--red:#932f33}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+    a{color:var(--accent)}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffbd42;outline-offset:2px}
+    .wrap{width:min(1150px,calc(100% - 32px));margin:auto}header{background:#0a203f;color:white;padding:16px 0}header a{color:white;text-decoration:none}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-weight:800;letter-spacing:.02em}.brand small{display:block;font-size:12px;color:#c2d5ee;font-weight:500}
+    .nav nav{display:flex;gap:18px;font-size:14px}.hero{background:#0d2b51;color:white;padding:45px 0 35px}.eyebrow{color:#b9d2fc;text-transform:uppercase;letter-spacing:.11em;font-size:12px;font-weight:800}
+    h1{font-size:clamp(30px,5vw,51px);letter-spacing:-.04em;line-height:1.08;margin:14px 0}.hero p{max-width:730px;margin:0 0 14px;color:#e3eefb}
+    .notice{background:#fff4df;border-left:5px solid #cd8b19;padding:13px 16px;color:#583909;border-radius:5px;margin-top:22px}
+    main{padding:32px 0 58px}.controls{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:12px;margin-bottom:13px}
+    label{display:flex;flex-direction:column;font-size:13px;font-weight:750;gap:5px}
+    input,select{font:inherit;font-size:15px;width:100%;background:white;color:#16263e;padding:11px 12px;border:1px solid #aabed4;border-radius:9px;min-height:46px}
+    .toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:17px 0}
+    .overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 22px}.stat{background:white;border:1px solid var(--line);border-radius:11px;padding:12px 15px}.stat strong{font-size:27px;display:block}.stat small{font-size:12px;color:var(--mid)}.qualification{border-left:3px solid #a9843c;background:#fcf8ed;padding:8px 12px;margin:10px 0;font-size:13px}
+    .muted{color:var(--mid)}.small{font-size:13px}.reset{background:white;border:1px solid #b7cce3;border-radius:9px;font:inherit;padding:9px 16px;cursor:pointer}
+    .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    article{border:1px solid var(--line);border-radius:13px;background:#fff;padding:20px;box-shadow:0 4px 14px #133b6b0b;min-width:0}
+    h2{font-size:19px;line-height:1.3;margin:12px 0 8px}.meta{font-size:13px;color:var(--mid);margin:3px 0}
+    .tags{display:flex;flex-wrap:wrap;gap:7px}.tag{font-size:11px;text-transform:uppercase;font-weight:800;letter-spacing:.045em;border-radius:30px;padding:4px 9px;background:#e9f0fb;color:#184778}
+    .tag.open{background:#e4f3ed;color:var(--green)}.tag.stale{background:#fff0d6;color:var(--amber)}
+    .tag.closed,.tag.unverified{background:#f7e9e9;color:var(--red)}.detail{font-size:14px;margin:15px 0}
+    .dates{border-top:1px solid var(--line);padding-top:10px;font-size:13px;color:var(--mid)}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:15px}
+    .button{border-radius:8px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;padding:9px 14px;font-size:14px}
+    .textlink{font-size:14px;font-weight:700;padding:9px 0}.empty{border:1px dashed #bacbdc;border-radius:12px;padding:36px;text-align:center;background:white}
+    .error{border:1px solid #f0b7b7;background:#fff2f2;border-radius:12px;padding:20px}.policy{margin-top:26px;padding:18px 20px;border-radius:12px;background:white;border:1px solid var(--line)}
+    footer{padding:25px 0;background:#0a203f;color:#c3d4e9}footer a{color:white}.hidden{display:none!important}
+    @media(max-width:840px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.overview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:650px){.list{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.nav nav{gap:9px;flex-wrap:wrap}.hero{padding:28px 0}.toolbar{align-items:flex-start;flex-direction:column}article{padding:16px}}
+  </style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="/contractflow/">CONTRACTFLOW<small>Vertical Business Solutions</small></a>
+<nav aria-label="Primary"><a href="/contractflow/">Service overview</a><a href="/contractflow/#enquiry">Tender-writing enquiry</a></nav></div></header>
+<section class="hero"><div class="wrap">
+ <div class="eyebrow">Western Australia · Mining contracts & tenders</div>
+ <h1>Mining Contract Finder</h1>
+ <p>Browse publicly sourced WA mining expressions of interest and procurement leads. Every listing links back to the original buyer notice.</p>
+ <div class="notice" role="note"><strong>QA review build — not approved for public release.</strong> This is a curated snapshot, not a live procurement feed. Listed-open status may change. Always confirm the original portal, full scope and exact deadline before deciding to bid.</div>
+</div></section>
+<main class="wrap">
+ <section class="overview" aria-label="Opportunity review snapshot">
+  <div class="stat"><strong id="n-open">—</strong><small>Fresh, listed-open EOIs</small></div>
+  <div class="stat"><strong id="n-stale">—</strong><small>Verification expired</small></div>
+  <div class="stat"><strong id="n-closed">—</strong><small>Historical / closed</small></div>
+  <div class="stat"><strong id="n-unverified">—</strong><small>Unverified</small></div>
+ </section>
+ <div class="controls" role="search" aria-label="Find opportunities">
+  <label>Keyword or buyer<input id="q" type="search" placeholder="e.g. mechanical, Greatland, Pilbara" autocomplete="off"></label>
+  <label>Work category<select id="category"><option value="">All work categories</option></select></label>
+  <label>Region<select id="region"><option value="">All regions</option></select></label>
+  <label>Notice type<select id="type"><option value="">All notice types</option></select></label>
+ </div>
+ <div class="toolbar">
+  <label>Verification / availability<select id="status">
+    <option value="open">Officially listed open (fresh only)</option>
+    <option value="all">All records, including stale/historical</option>
+    <option value="stale">Expired verification</option>
+    <option value="closed">Closed / historical</option>
+    <option value="unverified">Unverified</option>
+  </select></label>
+  <div class="toolbar"><div id="count" role="status" aria-live="polite">Checking source records…</div><button id="reset" type="button" class="reset">Clear filters</button></div>
+ </div>
+ <div id="error" class="error hidden" role="alert"></div>
+ <div id="list" class="list" aria-label="Opportunity search results"></div>
+ <div id="empty" class="empty hidden"><strong>No matching verified listings.</strong><p>Change your filters or refer to the buyer's official procurement portal. Stale listings are deliberately suppressed from the default results.</p></div>
+ <section class="policy" aria-label="How verification works">
+  <strong>Verification and approval controls</strong>
+  <p class="muted small">This review build uses publicly published project details only; it contains no private client records, portal credentials or submission controls. Open records are conservatively removed from the default result set 48 hours after their date-only source verification. If the exact closing hour is unknown, open records are also removed from the start of the published closing date (AWST). Technical eligibility, current availability, full SOW and buyer access must be checked at the source. An EOI is not an award or a guaranteed contract.</p>
+ </section>
+</main>
+<footer><div class="wrap">ContractFlow · Vertical Business Solutions · <a href="/contractflow/#enquiry">Discuss an opportunity</a></div></footer>
+<script>
+"use strict";
+(function(){
+ const $=function(id){return document.getElementById(id)};
+ const query=$("q"),category=$("category"),region=$("region"),type=$("type"),status=$("status");
+ const list=$("list"),count=$("count"),empty=$("empty"),error=$("error");
+ let rows=[];
+ const HOURS_48=48*60*60*1000;
+ function validDay(date){if(typeof date!=="string"||!/^\d{4}-\d{2}-\d{2}$/.test(date))return false;const n=Date.parse(date+"T12:00:00Z");return Number.isFinite(n)&&new Date(n).toISOString().slice(0,10)===date}
+ function safeTime(date){return validDay(date)?Date.parse(date+"T00:00:00+08:00"):NaN}
+ function eligibleRow(r){
+   if(!r||typeof r!=="object"||!["open","closed","unverified"].includes(r.status)||typeof r.id!=="string"||!r.id.trim())return false;
+   if(!["title","buyer","project","region","category","type","description"].every(function(k){return typeof r[k]==="string"&&r[k].trim().length>0}))return false;
+   if(typeof r.sourceUrl!=="string"||!/^https:\/\/gateway\.(prd\.)?icn\.org\.au\//.test(r.sourceUrl))return false;
+   if(!validDay(r.checkedDate)||!(r.closingDate===null||validDay(r.closingDate)))return false;
+   if(r.status==="open"&&(!validDay(r.closingDate)||r.closingTimezone!=="AWST"||r.closingTimeKnown!==false))return false;
+   return true;
+ }
+ function stateOf(row){
+   if(row.status!=="open") return row.status;
+   const verifiedAt=safeTime(row.checkedDate),closingAt=safeTime(row.closingDate),now=Date.now();
+   if(!Number.isFinite(verifiedAt)||now-verifiedAt>=HOURS_48||now<verifiedAt) return "stale";
+   if(Number.isFinite(closingAt)&&now>=closingAt) return "stale";
+   return "open";
+ }
+ function chooseOptions(element,values){
+   [...new Set(values.filter(Boolean))].sort().forEach(function(v){let option=document.createElement("option");option.value=v;option.textContent=v;element.append(option)});
+ }
+ function textNode(tag,value,klass){
+   let node=document.createElement(tag);node.textContent=value;if(klass)node.className=klass;return node;
+ }
+ function item(row){
+   const actual=stateOf(row);
+   const article=document.createElement("article");
+   const tags=document.createElement("div");tags.className="tags";
+   tags.append(textNode("span",actual==="open"?"Listed open — source check required":actual==="stale"?"Verification expired":actual==="closed"?"Closed / historical":"Unverified","tag "+actual));
+   tags.append(textNode("span",row.type,"tag"));
+   tags.append(textNode("span",row.category,"tag"));
+   article.append(tags,textNode("h2",row.title),textNode("p",row.buyer+" · "+row.project,"meta"),textNode("p",row.region,"meta"),textNode("p",row.description,"detail"));
+   let dates=document.createElement("div");dates.className="dates";
+   const deadline=row.closingDate?row.closingDate+" ("+row.closingTimezone+", exact hour unverified)":"Not published / historical";
+   dates.append(textNode("div","Published close: "+deadline),textNode("div","Official source date checked: "+row.checkedDate));
+   article.append(dates);
+   article.append(textNode("p",row.scopeReviewed===true?"Package review recorded; verify buyer documentation and qualifications before proceeding.":"Package scope and supplier eligibility have NOT been independently reviewed. The linked project page may contain several separate work packages.","qualification"));
+   let actions=document.createElement("div");actions.className="actions";
+   const source=document.createElement("a");source.href=row.sourceUrl;source.target="_blank";source.rel="noopener noreferrer";source.textContent="View original notice ↗";source.className="textlink";
+   const enquiry=document.createElement("a");enquiry.href="/contractflow/#enquiry";enquiry.textContent="Request EOI/tender help";enquiry.className="button";
+   actions.append(source,enquiry);article.append(actions);
+   return article;
+ }
+ function render(){
+   const totals={open:0,stale:0,closed:0,unverified:0};rows.forEach(function(r){totals[stateOf(r)]++});
+   Object.keys(totals).forEach(function(s){$("n-"+s).textContent=String(totals[s])});
+   const selectedStatus=status.value;const q=query.value.trim().toLocaleLowerCase("en-AU");
+   const subset=rows.filter(function(r){
+     const s=stateOf(r);
+     if(selectedStatus!=="all"&&s!==selectedStatus)return false;
+     if(category.value&&r.category!==category.value)return false;
+     if(region.value&&r.region!==region.value)return false;
+     if(type.value&&r.type!==type.value)return false;
+     return !q||[r.title,r.buyer,r.project,r.region,r.category,r.description].join(" ").toLocaleLowerCase("en-AU").includes(q);
+   }).sort(function(a,b){return (a.closingDate||"9999").localeCompare(b.closingDate||"9999")||a.title.localeCompare(b.title)});
+   list.replaceChildren();subset.forEach(function(r){list.append(item(r))});
+   count.textContent=subset.length+" result"+(subset.length===1?"":"s")+" · "+rows.length+" source records in review set";
+   empty.classList.toggle("hidden",subset.length!==0);
+ }
+ function reset(){query.value="";category.value="";region.value="";type.value="";status.value="open";render();query.focus()}
+ [query,category,region,type,status].forEach(function(el){el.addEventListener("input",render)});
+ $("reset").addEventListener("click",reset);
+ fetch("./opportunities.json",{cache:"no-store"}).then(function(response){
+   if(!response.ok)throw new Error("Dataset unavailable");
+   return response.json();
+ }).then(function(data){
+   if(!data||!Array.isArray(data.opportunities))throw new Error("Dataset invalid");
+   const seen=new Set();
+   rows=data.opportunities.filter(function(r){
+     if(!eligibleRow(r)||seen.has(r.id))return false;
+     seen.add(r.id);return true;
+   });
+   const quarantined=data.opportunities.length-rows.length;
+   if(quarantined){error.textContent=quarantined+" invalid or duplicate source record(s) withheld pending review.";error.classList.remove("hidden")}
+   chooseOptions(category,rows.map(function(r){return r.category}));
+   chooseOptions(region,rows.map(function(r){return r.region}));
+   chooseOptions(type,rows.map(function(r){return r.type}));
+   render();
+ }).catch(function(){
+   count.textContent="Source records unavailable";
+   error.textContent="Finder data could not be loaded. No listings will be shown. Use the official buyer procurement sites or contact VBS for research.";
+   error.classList.remove("hidden");
+ });
+ document.addEventListener("visibilitychange",function(){if(!document.hidden&&rows.length)render()});
+ setInterval(function(){if(rows.length)render()},60000);
+})();
+</script>
+</body>
+</html>

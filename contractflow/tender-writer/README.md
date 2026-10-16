@@ -1,6 +1,6 @@
-# ContractFlow — Tender Writer Workbench v0.2
+# ContractFlow — Tender Writer Workbench v0.3
 
-Internal, review-only prototype. NOT an AI tender writer yet; no client, buyer or public release is authorised.
+Internal, review-only prototype. Evidence-led drafting assistant; NOT an LLM tender writer yet; no client, buyer or public release is authorised.
 
 ## What works
 - Responsive WA mining tender intake with source, legal entity, procurement type, closing time and addenda checkbox.
@@ -16,7 +16,7 @@ Internal, review-only prototype. NOT an AI tender writer yet; no client, buyer o
 - Zero persistence. Data disappears after closing or clearing the tab; download needed work first.
 
 ## What it does NOT do
-- No LLM or AI API calls and no professional technical response generation. Clause responses are entered by the human operator.
+- No LLM or AI API calls or independently generated technical methodology. Local composition quotes verified, disclosure-cleared evidence; a competent human must write and approve the complete clause response.
 - No PDF/DOCX parsing, visual form completion, addenda diff, page citations or cross-file traceability.
 - No identity authentication, tenant separation or encrypted document storage.
 - No automatic buyer/supplier portal interactions, quote pricing, emails or tender submission.
@@ -26,9 +26,9 @@ Internal, review-only prototype. NOT an AI tender writer yet; no client, buyer o
 ## Run and verify
 Files live in the existing VBS repository under contractflow/tender-writer/ on the feature branch; this is a static site.
 
-Run unit tests with Node 18 or newer:
+Run all engine and DOM event tests with Node 22 or newer (verified on Node 24.19.0):
 
-    node --test contractflow/tender-writer/engine.test.mjs
+    node --test contractflow/tender-writer/*.test.mjs
 
 For a local-only demonstration, run from the repository root:
 
@@ -45,6 +45,17 @@ Browse to http://127.0.0.1:8765/contractflow/tender-writer/ . Do not publicly de
 6. Approval gates: mandate, technical, HSE, commercial and final signatory checklist — NOT proof of valid legal authority.
 7. Draft quality review: local heuristics flag gaps, short answers, unresolved placeholders, strong performance claims and missing evidence. Run review and export Markdown findings.
 8. Draft builder: assembles working answers into a source-linked but unapproved Markdown response outline. Commercial rates and signatures remain explicit holds.
+
+## New in v0.3
+- **Compose blank responses from evidence** quotes only explicitly linked evidence with an excerpt, page/section locator, named verifier and recorded draft-disclosure permission. Comma-separated evidence IDs are supported. Existing answers remain unchanged; composed answers remain In review.
+- **Build EOI / tender response** creates the relevant document structure, clause responses, evidence index and commercial/authority holds. The original outline remains available.
+- Source changes invalidate coverage, addenda confirmation, approvals and cached output. Composition is blocked until re-extraction. Package/client/buyer changes revoke existing evidence clearance to reduce accidental reuse.
+- Evidence verification can be revoked. Linked responses then require review and are withheld from response-package exports. Internal CSV exports still contain work-in-progress material: keep them confidential.
+- Readiness now includes QA blockers and review flags, manual full-package coverage and the unchanged source snapshot. Checkboxes remain operator assertions, not authenticated signoff.
+- No silent 1,300-character clause truncation or 200-clause partial extraction; oversized extraction stops with a clear message. Raw leading blank source lines are retained.
+- A restrictive meta CSP denies network connections and form submission; source content uses text nodes and escaped Markdown. This is defence in depth, not authentication or tenant isolation.
+- Six reproducible synthetic outputs are under `examples/`; regenerate with `node contractflow/tender-writer/examples/generate.mjs`.
+- See `verification/node-tests.txt` and `docs/CONTRACTFLOW_WRITER_V03_REVIEW.md` for evidence and specialist handoffs. DOM event tests are not browser/device/layout tests.
 
 The demo source/date are fictional and deliberately cannot pass readiness. The compliance matrix scrolls horizontally on mobile. No data is saved between sessions. Do not paste private customer content into externally shared previews.
 

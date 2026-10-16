@@ -9,3 +9,8 @@
 .response-input:focus{outline:2px solid #8cbdff;outline-offset:1px}
 .audit-summary{padding:14px 16px;background:#eff5fe;border:1px solid #c9ddef;border-radius:10px;color:#265178;font-size:12px;font-weight:800;margin:17px 0}
 @media(max-width:660px){.quickstart{padding:14px 12px}.quickstart summary span{display:none}.response-input{width:225px}}
+
+/* v0.3 evidence composition */
+.compact-form textarea{width:100%;border:1px solid #d4e0ec;border-radius:8px;padding:11px;resize:vertical;min-height:100px}
+button:focus-visible,summary:focus-visible{outline:3px solid #196cff;outline-offset:3px}
+.workspace,.card,.sidebar{min-width:0}

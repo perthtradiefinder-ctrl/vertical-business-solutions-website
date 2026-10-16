@@ -15,11 +15,11 @@ test("retains actual source lines and avoids duplicates", () => {
 });
 test("does not treat a typed evidence reference as verified evidence", () => {
   const requirements = [{id:"REQ-001",text:"Must provide insurance",status:"Satisfied",evidence:"EVD-001",owner:"Contracts lead",response:"Current insurance schedule will be provided with this return, subject to client verification."}];
-  const base = {buyer:"Buyer",client:"Client Pty Ltd",source:"official reference",deadline:"23 Oct 2026 16:00 AWST",addendaConfirmed:true,
+  const base = {buyer:"Buyer",client:"Client Pty Ltd",source:"official reference",deadline:"23 Oct 2026 16:00 AWST",addendaConfirmed:true, sourceText:"Buyer source", analysedSource:"Buyer source", coverageConfirmed:true,
     requirements, approvals:{mandate:true,technical:true,hse:true,commercial:true,signatory:true}};
   assert.match(assessReadiness({...base,evidence:[]}).status,/NOT READY/);
   assert.match(assessReadiness({...base,evidence:[{id:"EVD-001",status:"Unverified",source:"x",reviewer:"A"}]}).status,/NOT READY/);
-  assert.match(assessReadiness({...base,evidence:[{id:"EVD-001",status:"Verified",source:"x",reviewer:"A"}]}).status,/INTERNAL GATES COMPLETE/);
+  assert.match(assessReadiness({...base,evidence:[{id:"EVD-001",status:"Verified",excerpt:"Verified synthetic fact",locator:"p1",disclosureApproved:true,source:"x",reviewer:"A"}]}).status,/INTERNAL GATES COMPLETE/);
 });
 test("document output remains a hold-point draft, not invented credential content", () => {
   const draft = draftOutline({buyer:"Example", client:"Test Pty", requirements:[{id:"REQ-001",sourceLine:3, mandatory:true,
@@ -38,9 +38,9 @@ test("CSV export neutralises formula injection", () => {
 });
 test("cannot mark a fictional example as internally complete", () => {
   const x = assessReadiness({client:"Fictional Contractor",buyer:"Fictional Buyer",source:"SYNTHETIC EXAMPLE — NOT AN OPEN TENDER",
-    deadline:"DEMO ONLY — NO REAL CLOSING DATE", addendaConfirmed:true,requirements:[{
+    deadline:"DEMO ONLY — NO REAL CLOSING DATE", addendaConfirmed:true, sourceText:"Buyer source", analysedSource:"Buyer source", coverageConfirmed:true,requirements:[{
       id:"REQ-001",status:"Satisfied",evidence:"EVD-001",response:"Here is a documented method statement with verified relevant attachments.",owner:"Reviewer"
-    }],evidence:[{id:"EVD-001",status:"Verified",reviewer:"A",source:"Document"}],
+    }],evidence:[{id:"EVD-001",status:"Verified",excerpt:"Verified synthetic fact",locator:"p1",disclosureApproved:true,reviewer:"A",source:"Document"}],
     approvals:{mandate:true,technical:true,hse:true,commercial:true,signatory:true}});
   assert.match(x.status, /NOT READY/);
   assert.match(x.blockers.join(" "),/buyer source/i);
@@ -50,7 +50,7 @@ test("rule-based review flags empty responses and unsupported claims", () => {
     {id:"REQ-001", status:"Satisfied", evidence:"EVD-001",owner:"Reviewer",response:"We guarantee 100% compliance and zero incidents on all mining projects."},
     {id:"REQ-002", status:"Gap", evidence:"",response:""}
   ];
-  const evidence = [{id:"EVD-001",status:"Verified",reviewer:"R",source:"File"}];
+  const evidence = [{id:"EVD-001",status:"Verified",excerpt:"Verified synthetic fact",locator:"p1",disclosureApproved:true,reviewer:"R",source:"File"}];
   const x = auditResponses({requirements,evidence});
   assert.ok(x.blockers >= 2);
   assert.ok(x.reviews >= 1);
@@ -58,7 +58,7 @@ test("rule-based review flags empty responses and unsupported claims", () => {
 });
 test("completing internal gates requires a substantive draft response", () => {
   const base = {buyer:"B",client:"C",source:"https://official.example/package",deadline:"23 October 2026 14:00 AWST",
-    addendaConfirmed:true, evidence:[{id:"EVD-001",status:"Verified",reviewer:"R",source:"Doc"}],
+    addendaConfirmed:true, sourceText:"Buyer source", analysedSource:"Buyer source", coverageConfirmed:true, evidence:[{id:"EVD-001",status:"Verified",excerpt:"Verified synthetic fact",locator:"p1",disclosureApproved:true,reviewer:"R",source:"Doc"}],
     approvals:{mandate:true,technical:true,hse:true,commercial:true,signatory:true}};
   const req = {id:"REQ-001", status:"Satisfied", evidence:"EVD-001",response:"",owner:"R"};
   assert.match(assessReadiness({...base,requirements:[req]}).status,/NOT READY/);

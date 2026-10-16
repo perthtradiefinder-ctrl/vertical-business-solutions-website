@@ -1,0 +1,29 @@
+✔ composition includes exact approved fact and traceable locator, never upgrades status (1.803568ms)
+✔ missing, duplicate, unverified or undisclosed facts cannot enter a composed response (0.25118ms)
+✔ existing operator answer is preserved, input objects are not mutated (0.196497ms)
+✔ multiple linked evidence IDs are checked individually and unknown IDs block readiness (1.172864ms)
+✔ source amendments and unconfirmed package coverage block readiness (0.29751ms)
+✔ QA blockers, strong claims and extended placeholders prevent completed gates (0.336559ms)
+✔ evidence revocation, missing disclosure and duplicate IDs fail closed (0.223849ms)
+✔ EOI and tender packages differ, retain draft and authority holds (0.416941ms)
+✔ source content is inert Markdown, not HTML, image loads or executable instructions (0.524213ms)
+✔ no silent partial extraction at size or requirement cap (4.262096ms)
+✔ revoked evidence cannot leak through either response-package export (0.250419ms)
+✔ unused revoked evidence does not permanently prevent a corrected bid (0.166802ms)
+✔ recognises EOI and RFQ as distinct from tender (1.251262ms)
+✔ retains actual source lines and avoids duplicates (2.126185ms)
+✔ does not treat a typed evidence reference as verified evidence (1.592438ms)
+✔ document output remains a hold-point draft, not invented credential content (0.519125ms)
+✔ CSV export neutralises formula injection (0.452725ms)
+✔ cannot mark a fictional example as internally complete (0.319903ms)
+✔ rule-based review flags empty responses and unsupported claims (0.479956ms)
+✔ completing internal gates requires a substantive draft response (0.275857ms)
+✔ UI workflow: compose, preserve answers, export, invalidate approvals, revoke, amend source and reset (23.022688ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3104.397106

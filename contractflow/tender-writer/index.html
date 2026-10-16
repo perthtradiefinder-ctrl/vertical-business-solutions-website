@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="robots" content="noindex,nofollow">
-  <title>ContractFlow | Private Tender Writer Workbench — Internal Prototype</title>
+  <title>ContractFlow | Tender Writer Workbench — Internal Prototype</title>
   <link rel="stylesheet" href="./writer.css">
   <script type="module" src="./writer.js"></script>
 </head>
 <body>
   <header class="topbar">
     <div class="brand"><div class="brandmark">CF</div><div><strong>CONTRACTFLOW</strong><small>WA Mining Tender Writer / Internal prototype</small></div></div>
-    <div class="header-right"><span class="mode">LOCAL-ONLY · NO SERVER UPLOAD</span><span class="version">v0.2</span></div>
+    <div class="header-right"><span class="mode">LOCAL-ONLY · NO SERVER UPLOAD</span><span class="version">v0.3</span></div>
   </header>
   <main class="shell">
     <aside class="sidebar">
@@ -50,7 +51,7 @@
           <li>Extract and manually verify each requirement. Write a response and link verified evidence IDs.</li>
           <li>Run the quality review, record human approvals, then export the clearly labelled draft.</li>
         </ol>
-        <p>No AI writing, real buyer contact or bid submission takes place in this version. Never enter confidential tenders into a publicly accessible preview.</p>
+        <p>Evidence-led composition uses recorded excerpts, without a model. No real buyer contact or bid submission takes place in this version. Never enter confidential tenders into a publicly accessible preview.</p>
       </details>
 
       <section id="intake" class="card">
@@ -81,6 +82,8 @@
           <button id="manualAdd" class="btn-secondary" type="button">Add clause</button>
           <button id="csvReq" class="btn-ghost" type="button">Export CSV</button>
         </div>
+        <label class="checkline"><input id="coverage" type="checkbox"> I checked all buyer requirements, return schedules and addenda against this matrix</label>
+        <div class="toolbar"><button id="compose" type="button" class="btn-primary">Compose blank responses from evidence</button><span id="composeInfo" class="micro" role="status">No responses composed yet.</span></div>
         <div class="table-scroll">
           <table><thead><tr><th>ID / Source</th><th>Buyer wording & category</th><th>Review status</th><th>Evidence ID / source</th><th>Action owner</th><th>Working response (editable)</th></tr></thead><tbody id="reqRows"><tr><td colspan="6" class="empty">Analyse the tender text to populate requirements.</td></tr></tbody></table>
         </div>
@@ -93,10 +96,13 @@
           <label>Document reference / source<input id="evSource" required placeholder="Internal document ID or approved reference"></label>
           <label>Verification status<select id="evStatus"><option>Unverified</option><option>Verified</option></select></label>
           <label>Named reviewer<input id="evReviewer" placeholder="Required if marked verified"></label>
+          <label>Exact approved source excerpt<textarea id="evExcerpt" rows="4" placeholder="Copy the relevant facts exactly; no invented capability claims"></textarea></label>
+          <label>Page / section / paragraph<input id="evLocator" placeholder="Document v2, section 3.1, page 4"></label>
+          <label class="checkline"><input id="evDisclosure" type="checkbox"> Client permission to use this excerpt in a draft is recorded</label>
           <button type="submit" class="btn-secondary">Add evidence</button>
           <button id="csvEvidence" type="button" class="btn-ghost">Export evidence CSV</button>
         </form>
-        <div class="table-scroll"><table><thead><tr><th>ID</th><th>Description</th><th>Reference</th><th>Status</th><th>Reviewer</th></tr></thead><tbody id="evRows"><tr><td colspan="5" class="empty">No supporting evidence recorded.</td></tr></tbody></table></div>
+        <div class="table-scroll"><table><thead><tr><th>ID</th><th>Description</th><th>Reference</th><th>Status</th><th>Reviewer</th><th>Control</th></tr></thead><tbody id="evRows"><tr><td colspan="6" class="empty">No supporting evidence recorded.</td></tr></tbody></table></div>
       </section>
 
       <section id="approvals" class="card">
@@ -120,7 +126,7 @@
 
       <section id="draft" class="card">
         <div class="section-header"><span class="section-count">06</span><div><h3>Controlled draft builder</h3><p>Combines your clause-specific response drafts with requirement and evidence references; unresolved sections remain marked for review.</p></div></div>
-        <div class="toolbar"><button id="buildDraft" class="btn-primary" type="button">Build draft outline</button><button id="downloadDraft" class="btn-secondary" type="button">Export draft .md</button></div>
+        <div class="toolbar"><button id="buildResponse" class="btn-primary" type="button">Build EOI / tender response</button><button id="buildDraft" class="btn-primary" type="button">Build draft outline</button><button id="downloadDraft" class="btn-secondary" type="button">Export draft .md</button></div>
         <label class="big-label" for="draftText">Generated outline — not approved</label>
         <textarea id="draftText" rows="15" readonly placeholder="Your draft outline will appear here."></textarea>
       </section>

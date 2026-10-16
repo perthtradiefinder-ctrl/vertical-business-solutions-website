@@ -226,6 +226,8 @@ byId("clear").addEventListener("click", () => {
   if (window.confirm("Clear all in-memory work in this browser tab? Download required drafts first.")) reset();
 });
 byId("sample").addEventListener("click", () => {
+  if ((state.requirements.length || state.evidence.length || value("sourceText")) &&
+      !window.confirm("Replace the current in-memory work with fictional demo data? Download your draft and CSV files first if needed.")) return;
   reset();
   byId("client").value = "Example Contractor Pty Ltd — FICTIONAL";
   byId("buyer").value = "Example Mining Buyer — FICTIONAL";

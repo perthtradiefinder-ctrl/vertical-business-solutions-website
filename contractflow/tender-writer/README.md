@@ -1,4 +1,4 @@
-# ContractFlow — Tender Writer Workbench v0.1
+# ContractFlow — Tender Writer Workbench v0.2
 
 Internal, review-only prototype. NOT an AI tender writer yet; no client, buyer or public release is authorised.
 
@@ -9,17 +9,18 @@ Internal, review-only prototype. NOT an AI tender writer yet; no client, buyer o
 - Manually add missed clauses, record status, evidence ID and action owner.
 - Evidence register with a named reviewer required for status Verified.
 - Requirements marked Satisfied must reference an ID present in the Verified evidence register.
-- Review summary with outstanding approval and evidence gaps.
-- Export clause matrix and evidence CSV (formula-injection mitigation); export Markdown outline marked DRAFT ONLY.
+- Clause-by-clause editable working response fields, and a local heuristic quality review for gaps, placeholders and claims requiring proof.
+- Review summary with outstanding approval and evidence gaps. A clause marked Satisfied must also have a substantive response.
+- Export clause matrix (including working responses) and evidence CSV (formula-injection mitigation); export Markdown outline marked DRAFT ONLY, plus rule-based review report.
 - Safe synthetic example for demonstration; no claimed live work.
 - Zero persistence. Data disappears after closing or clearing the tab; download needed work first.
 
 ## What it does NOT do
-- No LLM or AI API calls and no professional technical response generation.
+- No LLM or AI API calls and no professional technical response generation. Clause responses are entered by the human operator.
 - No PDF/DOCX parsing, visual form completion, addenda diff, page citations or cross-file traceability.
 - No identity authentication, tenant separation or encrypted document storage.
 - No automatic buyer/supplier portal interactions, quote pricing, emails or tender submission.
-- No guarantee every mandatory criterion is found; manual source-by-source verification required.
+- No guarantee every mandatory criterion is found; manual source-by-source verification required. QA reviews only known clauses, not omissions or the actual truth of supplied answers.
 - Checkboxes are work tracking only, NOT proof of legally valid client authorisation or reviewer approval.
 
 ## Run and verify
@@ -34,6 +35,18 @@ For a local-only demonstration, run from the repository root:
     python3 -m http.server 8765 --bind 127.0.0.1
 
 Browse to http://127.0.0.1:8765/contractflow/tender-writer/ . Do not publicly deploy or share any browser with live confidential tender data.
+
+## Pages and buttons
+1. Left sidebar: jump to sections, load a wholly fictional sample, clear all tab contents.
+2. Quick-start guide: expandable usage instructions and confidentiality warning.
+3. Opportunity intake: buyer, legal client, package metadata, original source, closing time zone, addenda, TXT/MD text, candidate extraction.
+4. Compliance matrix: buyer wording and source line, manually added clauses, status, evidence ID, action owner and editable answer.
+5. Evidence register: evidence IDs, descriptions, document sources, status and named verifier.
+6. Approval gates: mandate, technical, HSE, commercial and final signatory checklist — NOT proof of valid legal authority.
+7. Draft quality review: local heuristics flag gaps, short answers, unresolved placeholders, strong performance claims and missing evidence. Run review and export Markdown findings.
+8. Draft builder: assembles working answers into a source-linked but unapproved Markdown response outline. Commercial rates and signatures remain explicit holds.
+
+The demo source/date are fictional and deliberately cannot pass readiness. The compliance matrix scrolls horizontally on mobile. No data is saved between sessions. Do not paste private customer content into externally shared previews.
 
 ## REA research boundary
 Reverse Engineer Anything (https://github.com/morluto/rea) is optional software-design research, not a writing model. No REA install, analysis run or external app cloning occurred in this task. Use it only where inspection is authorised. Never bypass procurement portals or copy proprietary tender responses. REA is not a production dependency.

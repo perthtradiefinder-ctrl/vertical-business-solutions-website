@@ -1,6 +1,6 @@
 /* ContractFlow Tender Writer: deterministic, browser-safe analysis engine.
    Deliberately no network, secrets, external packages or claim-generating AI. */
-export const VERSION = "0.1.0";
+export const VERSION = "0.2.0";
 export const TYPES = ["Tender / RFT", "Request for quotation", "Expression of interest", "Supplier prequalification", "Unclassified"];
 const CATEGORY_RULES = [
   ["Health, safety & environment", /\b(HSE|WHS|safety|hazard|SWMS|JHA|JSA|incident|environment|risk assessment)\b/i],
@@ -57,7 +57,8 @@ export function extractRequirements(input) {
       status: "Unassessed",
       evidence: "",
       owner: "",
-      notes: ""
+      notes: "",
+      response: ""
     });
     if (result.length >= 200) break;
   }
@@ -74,6 +75,8 @@ export function assessReadiness({ requirements = [], evidence = [], approvals = 
   const verifiedIds = new Set(evidence.filter(e => e.status === "Verified" && String(e.reviewer || "").trim() && String(e.source || "").trim()).map(e => e.id));
   const missing = requirements.filter(r => r.status !== "Satisfied" || !verifiedIds.has(String(r.evidence || "").trim()));
   if (missing.length) blockers.push(missing.length + " requirements lack a satisfied status linked to a verified evidence ID.");
+  const unwritten = requirements.filter(r => r.status === "Satisfied" && String(r.response || "").trim().length < 40);
+  if (unwritten.length) blockers.push(unwritten.length + " requirements are marked satisfied without a substantive drafted response (40+ characters).");
   const unverified = evidence.filter(e => e.status !== "Verified");
   if (unverified.length) blockers.push(unverified.length + " evidence records are not verified.");
   for (const [key, label] of Object.entries({
@@ -125,7 +128,7 @@ export function draftOutline({ buyer = "", client = "", reference = "", title = 
       result += "> " + r.text.replace(/\n/g, " ") + "\n\n";
       result += "Status: " + r.status + "\n";
       result += "Evidence reference: " + (r.evidence.trim() || "[MISSING]") + "\n";
-      result += "Response: [DRAFT REQUIRED — DO NOT INVENT PROJECTS, INSURANCE, TICKETS OR RESULTS]\n";
+      result += "Response: " + (String(r.response || "").trim() || "[DRAFT REQUIRED — DO NOT INVENT PROJECTS, INSURANCE, TICKETS OR RESULTS]") + "\n";
       if (r.notes.trim()) result += "Internal note: " + r.notes.trim() + "\n";
     }
   }
@@ -138,10 +141,56 @@ export function csvCell(value) {
   return '"' + s.replace(/"/g, '""') + '"';
 }
 export function requirementsCsv(items) {
-  const keys = ["id", "sourceLine", "text", "category", "mandatory", "status", "evidence", "owner", "notes"];
+  const keys = ["id", "sourceLine", "text", "category", "mandatory", "status", "evidence", "owner", "notes", "response"];
   return [keys.map(csvCell).join(","), ...items.map(item => keys.map(k => csvCell(item[k])).join(","))].join("\r\n");
 }
 export function evidenceCsv(items) {
   const keys = ["id", "description", "source", "status", "reviewer"];
   return [keys.map(csvCell).join(","), ...items.map(item => keys.map(k => csvCell(item[k])).join(","))].join("\r\n");
+}
+
+/* Review warnings are heuristics, not independent verification or a score of tender quality. */
+export function auditResponses({requirements = [], evidence = []} = {}) {
+  const verifiedIds = new Set(evidence.filter(e => e.status === "Verified" && String(e.reviewer || "").trim() && String(e.source || "").trim()).map(e => e.id));
+  const findings = [];
+  for (const r of requirements) {
+    const response = String(r.response || "").trim();
+    const evidenceId = String(r.evidence || "").trim();
+    const flagged = (severity, finding) => findings.push({id: r.id, severity, finding});
+    if (r.status === "Not applicable — justify") flagged("REVIEW", "Not applicable needs documented buyer/approver justification; not auto-accepted.");
+    if (r.status === "Unassessed" || r.status === "Gap") flagged("BLOCKER", "Clause is not assessed as satisfied.");
+    if (!response) flagged("BLOCKER", "No clause-specific response drafted.");
+    else {
+      if (response.length < 40) flagged("REVIEW", "Response is very brief; confirm it answers every part of buyer requirement.");
+      if (/\[(?:TO CONFIRM|TBC|TBA|INSERT|DRAFT|MISSING)\]|\bTBC\b|\bTBA\b/i.test(response))
+        flagged("BLOCKER", "Response contains unresolved placeholder text.");
+      if (/\b(?:guarantee(?:d|s)?|zero (?:injur(?:y|ies)|incidents?|LTI)|100% (?:compliant|safe|success|on time)|industry.leading|best in (?:WA|Australia))\b/i.test(response))
+        flagged("REVIEW", "Strong performance or guarantee claim — check underlying verifiable evidence and client approval.");
+    }
+    if (r.status === "Satisfied" && !verifiedIds.has(evidenceId)) flagged("BLOCKER", "Satisfied clause lacks linked, named-reviewer-verified evidence.");
+    if (r.status === "Satisfied" && !String(r.owner || "").trim()) flagged("REVIEW", "No named clause owner or reviewer.");
+  }
+  return {
+    findings,
+    blockers: findings.filter(f => f.severity === "BLOCKER").length,
+    reviews: findings.filter(f => f.severity === "REVIEW").length,
+    examined: requirements.length,
+    disclaimer: "Heuristic drafting checks only; buyer clause coverage, technical and commercial accuracy require independent qualified human review."
+  };
+}
+export function reviewReport({buyer = "", client = "", reference = "", requirements = [], evidence = []} = {}) {
+  const audit = auditResponses({requirements, evidence});
+  return [
+    "# CONTRACTFLOW INTERNAL DRAFT REVIEW — NOT A CERTIFICATION",
+    "Buyer: " + (String(buyer || "").trim() || "[UNKNOWN]"),
+    "Contractor: " + (String(client || "").trim() || "[UNKNOWN]"),
+    "Package reference: " + (String(reference || "").trim() || "[UNKNOWN]"),
+    "Clauses checked: " + audit.examined,
+    "Blocker findings: " + audit.blockers,
+    "Review findings: " + audit.reviews,
+    "",
+    audit.disclaimer,
+    "",
+    ...audit.findings.map(f => "- **" + f.severity + " · " + f.id + ":** " + f.finding)
+  ].join("\n");
 }

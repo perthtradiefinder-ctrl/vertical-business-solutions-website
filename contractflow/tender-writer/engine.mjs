@@ -68,8 +68,8 @@ export function assessReadiness({ requirements = [], evidence = [], approvals = 
   const blockers = [];
   if (!client.trim()) blockers.push("Client legal entity is not recorded.");
   if (!buyer.trim()) blockers.push("Buyer is not identified.");
-  if (!source.trim()) blockers.push("Official source / package reference has not been recorded.");
-  if (!deadline.trim()) blockers.push("Closing date and time zone have not been verified.");
+  if (!source.trim() || /synthetic example|demo.only/i.test(source)) blockers.push("Verified official buyer source / package reference has not been recorded.");
+  if (!deadline.trim() || /demo.only/i.test(deadline)) blockers.push("Real buyer closing date, time and timezone have not been recorded.");
   if (!addendaConfirmed) blockers.push("Latest buyer addenda and amendments have not been confirmed.");
   if (!requirements.length) blockers.push("No requirements have been extracted or manually added.");
   const verifiedIds = new Set(evidence.filter(e => e.status === "Verified" && String(e.reviewer || "").trim() && String(e.source || "").trim()).map(e => e.id));
@@ -153,6 +153,7 @@ export function evidenceCsv(items) {
 export function auditResponses({requirements = [], evidence = []} = {}) {
   const verifiedIds = new Set(evidence.filter(e => e.status === "Verified" && String(e.reviewer || "").trim() && String(e.source || "").trim()).map(e => e.id));
   const findings = [];
+  if (!requirements.length) findings.push({id:"GLOBAL",severity:"BLOCKER",finding:"No original buyer requirements available for review."});
   for (const r of requirements) {
     const response = String(r.response || "").trim();
     const evidenceId = String(r.evidence || "").trim();

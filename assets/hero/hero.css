@@ -23,8 +23,8 @@
 .vbs-hero .vbs-hero-copy{padding:0 8% 60px 6%}
 .vbs-hero .vbs-eyebrow{font-size:9px;letter-spacing:2px;font-weight:700;color:var(--muted);margin:0 0 25px;display:flex;gap:9px;align-items:center}
 .vbs-hero .vbs-eyebrow>span{width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 14px var(--blue)}
-.vbs-hero h1{font-size:clamp(38px,4.1vw,74px);line-height:1.06;letter-spacing:-2.8px;font-weight:750;margin:0 0 24px}
-.vbs-hero h1 em{font-style:normal;color:#6dc2ff}
+.vbs-hero #vbs-hero-title{font-size:clamp(38px,4.1vw,74px);line-height:1.06;letter-spacing:-2.8px;font-weight:750;margin:0 0 24px}
+.vbs-hero #vbs-hero-title em{font-style:normal;color:#6dc2ff}
 .vbs-hero .vbs-intro{color:#a5b7c8;font-size:15px;max-width:345px;line-height:1.8;margin:0 0 32px}
 .vbs-hero .vbs-hero-actions{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
 .vbs-hero .vbs-primary{background:#64baff;color:#071c2d;border:1px solid #85caff;border-radius:8px;padding:13px 20px;font-size:12px;font-weight:750;box-shadow:0 6px 35px #2799ee22}
@@ -207,12 +207,12 @@
 .vbs-hero.vbs-no-animation.vbs-scroll-track{height:auto}
 .vbs-hero.vbs-no-animation .vbs-world{opacity:.8}
 @media(min-width:1700px){.vbs-hero .vbs-hero-copy{padding-left:5%}
-.vbs-hero h1{font-size:74px}
+.vbs-hero #vbs-hero-title{font-size:74px}
 .vbs-hero .vbs-scene{height:700px}
 }
 @media(max-width:1050px) and (min-width:701px){.vbs-hero .vbs-hero-layout{grid-template-columns:32% 68%;width:97%}
 .vbs-hero .vbs-hero-copy{padding-left:3%;padding-right:5%}
-.vbs-hero h1{font-size:38px;letter-spacing:-1.6px}
+.vbs-hero #vbs-hero-title{font-size:38px;letter-spacing:-1.6px}
 .vbs-hero .vbs-intro{font-size:12px}
 .vbs-hero .vbs-eyebrow{font-size:7px;letter-spacing:1px}
 .vbs-hero .vbs-scene{height:550px}
@@ -229,9 +229,9 @@
 .vbs-hero .vbs-hero-layout{display:block;width:100%}
 .vbs-hero .vbs-hero-copy{padding:0 20px 15px;display:grid;grid-template-columns:1fr auto;align-items:end}
 .vbs-hero .vbs-eyebrow{font-size:6px;letter-spacing:1.3px;grid-column:1/-1;margin-bottom:10px}
-.vbs-hero h1{font-size:28px;letter-spacing:-1px;line-height:1.05;margin-bottom:0}
-.vbs-hero h1 br:nth-of-type(2){display:none}
-.vbs-hero h1 em{display:block}
+.vbs-hero #vbs-hero-title{font-size:28px;letter-spacing:-1px;line-height:1.05;margin-bottom:0}
+.vbs-hero #vbs-hero-title br:nth-of-type(2){display:none}
+.vbs-hero #vbs-hero-title em{display:block}
 .vbs-hero .vbs-intro{display:none}
 .vbs-hero .vbs-hero-actions{margin-bottom:3px;gap:6px}
 .vbs-hero .vbs-primary{padding:8px 10px;font-size:8px;min-height:44px}
@@ -298,7 +298,7 @@
 .vbs-hero.vbs-no-animation .vbs-sticky-hero{height:auto;padding:20px 0}
 }
 @media(max-height:740px) and (max-width:700px){.vbs-hero .vbs-hero-copy{padding-bottom:10px}
-.vbs-hero h1{font-size:24px}
+.vbs-hero #vbs-hero-title{font-size:24px}
 .vbs-hero .vbs-eyebrow{margin-bottom:6px}
 .vbs-hero .vbs-scene{height:420px}
 .vbs-hero .vbs-sticky-hero{justify-content:flex-start;padding-top:8px}
@@ -319,7 +319,7 @@
 }
 @media(max-width:700px){.vbs-hero .vbs-site-photo .vbs-photo-surface,.vbs-hero .vbs-old-plane{background-image:url('driveway-mobile.webp')}
 }
-@media(min-width:1051px){.vbs-hero h1{font-size:clamp(44px,3.35vw,65px);letter-spacing:-2px}
+@media(min-width:1051px){.vbs-hero #vbs-hero-title{font-size:clamp(44px,3.35vw,65px);letter-spacing:-2px}
 }
 .vbs-hero .vbs-quote-line{padding:5px 0}
 @media(max-width:700px){.vbs-hero #vbs-tag-labour,.vbs-hero #vbs-tag-equipment{display:none}
@@ -351,8 +351,8 @@
 @media(max-width:700px) and (max-height:760px){
  .vbs-hero .vbs-hero-copy{grid-template-columns:1fr;padding-bottom:8px}
  .vbs-hero .vbs-eyebrow{display:none}
- .vbs-hero h1{font-size:23px;line-height:1.05}
- .vbs-hero h1 br{display:none}.vbs-hero h1 em{display:inline}
+ .vbs-hero #vbs-hero-title{font-size:23px;line-height:1.05}
+ .vbs-hero #vbs-hero-title br{display:none}.vbs-hero #vbs-hero-title em{display:inline}
  .vbs-hero .vbs-hero-actions{flex-direction:row;gap:6px;margin-top:7px;margin-bottom:0}
  .vbs-hero .vbs-scroll-hint{display:none}
  .vbs-hero .vbs-scene-heading strong{font-size:14px}

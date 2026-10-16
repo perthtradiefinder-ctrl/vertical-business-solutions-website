@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#071a33" />
-  <meta name="description" content="Vertical Business Solutions helps Australian trade businesses quote faster, manage jobs, visualise finished work and keep every step connected." />
-  <title>Vertical Business Solutions | Quote Faster. Manage Jobs. Grow.</title>
+  <meta name="description" content="Vertical Business Solutions offers product families for mining and trade tenders, quoting, training, workforce coordination, business operations and AI-assisted administration." />
+  <title>Vertical Business Solutions | Products for Trades & Business Operations</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="assets/hero/hero.css" />
+  <link rel="stylesheet" href="assets/category-hero/categories.css" />
 </head>
 <body>
   <header class="site-header">
@@ -21,7 +22,7 @@
       </a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-        <a href="#products">Trade products</a>
+        <a href="#categories">Product categories</a>
         <a href="/contractflow/">Mining contracts</a>
         <a href="#workflow">How it works</a>
         <a href="#platform">VBS platform</a>
@@ -32,12 +33,73 @@
   </header>
 
   <main id="top">
-    <section class="vbs-hero vbs-scroll-track vbs-static" id="workflow" aria-labelledby="hero-title">
+    <!-- Concept only: category imagery is the primary VBS homepage hero. Existing workflow retained below. -->
+    <section class="vbs-category-hero" id="categories" aria-labelledby="vbs-categories-title">
+      <div class="wrap">
+        <div class="vbs-category-header">
+          <div>
+            <p class="vbs-category-eyebrow">Vertical Business Solutions · Product categories</p>
+            <h1 id="vbs-categories-title">One business partner.<br><em>Solutions for every workflow.</em></h1>
+          </div>
+          <p class="vbs-category-intro">Explore the right tools for your business — from Western Australian mining and trade tenders to quoting, workforce coordination, business operations and AI-assisted administration.</p>
+        </div>
+        <div class="vbs-category-grid" aria-label="Explore VBS product categories">
+          <a class="vbs-category-card vbs-category-card--feature" href="/contractflow/">
+            <img class="vbs-category-art" src="assets/category-hero/contracts-mining.svg" alt="" width="1200" height="800" decoding="async" fetchpriority="high">
+            <div class="vbs-category-card-copy">
+              <span class="vbs-category-card-kicker">01 / Mining &amp; construction</span>
+              <h2>Contracts &amp; Tender Services</h2>
+              <p>Discover source-linked opportunities, check bid suitability and enquire about tender-writing assistance.</p>
+              <span class="vbs-category-card-arrow">Explore contracts and tenders</span>
+            </div>
+          </a>
+          <a class="vbs-category-card" href="#products">
+            <img class="vbs-category-art" src="assets/hero/driveway.webp" alt="" width="1536" height="864" decoding="async">
+            <div class="vbs-category-card-copy">
+              <span class="vbs-category-card-kicker">02 / Trade tools</span>
+              <h2>Quoting &amp; Visualisation</h2>
+              <p>Trade quotes, pricing and visual project concepts.</p>
+              <span class="vbs-category-card-arrow">View trade products</span>
+            </div>
+          </a>
+          <a class="vbs-category-card" href="#platform">
+            <img class="vbs-category-art" src="assets/category-hero/training-workforce.svg" alt="" width="1200" height="800" decoding="async">
+            <div class="vbs-category-card-copy">
+              <span class="vbs-category-card-kicker">03 / Site operations</span>
+              <h2>Training &amp; Workforce</h2>
+              <p>Training records, crew coordination and compliance workflows.</p>
+              <span class="vbs-category-card-arrow">Explore workforce solutions</span>
+            </div>
+          </a>
+          <a class="vbs-category-card" href="#platform">
+            <img class="vbs-category-art" src="assets/category-hero/ai-inbox.svg" alt="" width="1200" height="800" decoding="async">
+            <div class="vbs-category-card-copy">
+              <span class="vbs-category-card-kicker">04 / Assisted administration</span>
+              <h2>AI Inbox &amp; Admin</h2>
+              <p>Organise enquiries, prepare responses and retain human approval.</p>
+              <span class="vbs-category-card-arrow">Explore AI assistants</span>
+            </div>
+          </a>
+          <a class="vbs-category-card" href="#platform">
+            <img class="vbs-category-art" src="assets/category-hero/business-operations.svg" alt="" width="1200" height="800" decoding="async">
+            <div class="vbs-category-card-copy">
+              <span class="vbs-category-card-kicker">05 / Connected systems</span>
+              <h2>Business Operations</h2>
+              <p>Manage customer workflows, approvals and operational visibility.</p>
+              <span class="vbs-category-card-arrow">Explore business systems</span>
+            </div>
+          </a>
+        </div>
+        <p class="vbs-category-footnote">Product families include working demos, development-stage tools and proposed services. Availability and scope are explained on their individual pages; all customer-facing commitments require appropriate approval.</p>
+        <a class="vbs-category-jump" href="#workflow">See an example trade workflow ↓</a>
+      </div>
+    </section>
+    <section class="vbs-hero vbs-scroll-track vbs-static" id="workflow" aria-labelledby="vbs-hero-title">
  <div class="vbs-sticky-hero">
   <div class="vbs-hero-layout">
    <div class="vbs-hero-copy">
     <p class="vbs-eyebrow"><span></span> BUILT AROUND THE WAY TRADIES WORK</p>
-    <h1 id="vbs-hero-title">FROM ENQUIRY<br> TO <em>COMPLETED</em><br> JOB.</h1>
+    <h2 id="vbs-hero-title">FROM ENQUIRY<br> TO <em>COMPLETED</em><br> JOB.</h2>
     <p class="vbs-intro">Watch customer information, site photos, pricing and approvals move through one connected trade workflow.</p>
     <div class="vbs-hero-actions"><button type="button" id="vbs-watch" class="vbs-primary" disabled>Watch the workflow <span>↗</span></button><a id="vbs-hero-demo" class="vbs-secondary" href="#demo">Book a demo</a></div>
     <div class="vbs-copy-footer"><span class="vbs-small-line"></span><span>One job. Every step. Connected.</span></div>
